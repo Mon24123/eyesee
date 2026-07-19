@@ -1,31 +1,1924 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charSet="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" href="assets/index-DHezgImu.css" data-rsc-css-href="/assets/index-DHezgImu.css" data-precedence="vite-rsc/importer-resources"/>
-  <link rel="modulepreload" href="assets/layout-segment-context-CvOzlKHe.js" crossorigin=""/>
-  <link rel="modulepreload" href="assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/>
-  <link rel="modulepreload" href="assets/index-BSzK71ck.js" crossorigin=""/>
-  <link rel="modulepreload" href="assets/framework-CXnKph_e.js" crossorigin=""/>
-  <link rel="modulepreload" href="assets/RouteJianDemo-Ms2aTLlH.js" crossorigin=""/>
-  <title>路见｜AI 无障碍通道双向守护</title>
-  <meta name="description" content="体验从语音路线规划、实时避障到城市治理处置的完整产品闭环。"/>
-  <meta property="og:title" content="路见｜无障碍通道 AI 双向守护系统"/>
-  <meta property="og:description" content="从语音路线规划、实时避障到城市治理处置，体验完整产品闭环。"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="og.png"/>
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-  <meta property="og:image:alt" content="路见产品分享封面"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="路见｜无障碍通道 AI 双向守护系统"/>
-  <meta name="twitter:description" content="体验从安全走过到问题被解决的 AI 无障碍治理闭环。"/>
-  <meta name="twitter:image" content="og.png"/>
-  <link rel="shortcut icon" href="favicon.svg"/>
-  <link rel="icon" href="favicon.svg"/>
-  <script>self.__VINEXT_RSC_PARAMS__={}</script>
-  <script>self.__VINEXT_RSC_NAV__={"pathname":"/","searchParams":[]}</script>
-  <link rel="modulepreload" href="assets/index-BSzK71ck.js" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src 'self' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Lujian Ui Prototype</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed="true"],
+    [aria-selected="true"],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+  <meta name="lujian-build" content="2026-07-19-auto-fit-v3">
+<style data-lujian-auto-fit="true">
+html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
+#lujian-ui-prototype { width: 100%; height: 100dvh; padding: 7px 9px; display: flex; flex-direction: column; overflow: hidden; }
+#lujian-ui-prototype .prototype-switch { flex: 0 0 auto; gap: 6px; margin: 0 0 6px; }
+#lujian-ui-prototype .prototype-view { flex: 1 1 auto; min-height: 0; overflow: hidden; }
+#lujian-ui-prototype .device-hint { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#lujian-ui-prototype .user-stage { width: 100%; height: 100%; min-height: 0; padding: 0; overflow: hidden; align-items: flex-start; }
+#lujian-ui-prototype .phone { height: auto; min-height: 0; max-height: none; transform-origin: top center; }
+#lujian-ui-prototype .mobile-screen,
+#lujian-ui-prototype .family-screen { overflow: visible; }
+#lujian-ui-prototype [data-view="governance"] { position: relative; height: 100%; overflow: hidden; }
+#lujian-ui-prototype .gov-shell { transform-origin: top center; }
+
+@media (max-width: 720px) {
+  #lujian-ui-prototype { padding: max(5px, env(safe-area-inset-top)) 7px max(5px, env(safe-area-inset-bottom)); }
+  #lujian-ui-prototype .prototype-switch { gap: 4px; margin-bottom: 5px; }
+  #lujian-ui-prototype .prototype-switch .btn { flex: 1 1 0; min-width: 0; padding-inline: 5px; white-space: nowrap; }
+  #lujian-ui-prototype .phone { width: 100%; border-radius: 21px; box-shadow: none; }
+  #lujian-ui-prototype .phone-status { padding: 6px 15px 3px; }
+  #lujian-ui-prototype .mobile-screen,
+  #lujian-ui-prototype .family-screen { padding: 5px 13px 7px; }
+  #lujian-ui-prototype .mobile-head { margin-bottom: 9px; }
+  #lujian-ui-prototype .mobile-tabbar { padding: 4px 6px 5px; }
+  #lujian-ui-prototype .mobile-tabbar button { padding: 4px 2px; }
+  #lujian-ui-prototype .destination-card { padding: 8px 9px; margin-bottom: 7px; }
+  #lujian-ui-prototype .voice-query { grid-template-columns: 56px 1fr; gap: 9px; padding: 9px 10px; }
+  #lujian-ui-prototype .voice-query .hero-mic { width: 50px; height: 50px; }
+  #lujian-ui-prototype .voice-result { padding: 8px 10px; margin: 7px 0; }
+  #lujian-ui-prototype .section-label { margin: 8px 0 6px; }
+  #lujian-ui-prototype .route-list { gap: 6px; }
+  #lujian-ui-prototype .route-card { padding: 8px 9px; }
+  #lujian-ui-prototype .route-summary { padding: 11px; margin: 8px 0; }
+  #lujian-ui-prototype .reason-list { gap: 4px; margin-top: 7px; }
+  #lujian-ui-prototype .route-advice { margin-top: 7px; padding-top: 7px; }
+  #lujian-ui-prototype .mobile-primary { margin-top: 9px; }
+  #lujian-ui-prototype .nav-instruction { padding: 10px 12px; margin: 5px 0 7px; }
+  #lujian-ui-prototype .turn-icon { width: 48px; height: 48px; }
+  #lujian-ui-prototype .scan-live { padding: 8px 10px; margin-bottom: 7px; }
+  #lujian-ui-prototype .route-map { height: 190px; }
+  #lujian-ui-prototype .nav-footer { gap: 6px; margin-top: 7px; }
+  #lujian-ui-prototype .nav-status { padding: 8px 10px; }
+  #lujian-ui-prototype .alert-screen { min-height: 0; }
+  #lujian-ui-prototype .alert-core { padding: 7px 4px 10px; }
+  #lujian-ui-prototype .alert-symbol { width: 70px; height: 70px; margin-bottom: 10px; }
+  #lujian-ui-prototype .alert-progress { margin: 10px 0 8px; }
+  #lujian-ui-prototype .alert-step-card { padding: 11px; }
+  #lujian-ui-prototype .family-hero { padding: 10px 12px; margin-bottom: 7px; }
+  #lujian-ui-prototype .family-hero h2 { margin: 7px 0 3px; }
+  #lujian-ui-prototype .trip-progress { margin-top: 9px; }
+  #lujian-ui-prototype .family-map { height: 160px; margin: 6px 0 7px; }
+  #lujian-ui-prototype .family-actions { gap: 6px; margin-bottom: 7px; }
+  #lujian-ui-prototype .family-action { padding: 7px 4px; }
+  #lujian-ui-prototype .family-screen .simple-list { gap: 5px; margin-top: 5px; }
+  #lujian-ui-prototype .family-screen .simple-item { padding: 8px 9px; }
+}
+</style>
 </head>
-<body><main class="app-shell accessible-mode"><header class="app-header"><div class="brand-lockup"><span class="brand-mark"><i></i><i></i></span><div><strong>路见</strong><span>无障碍通道 AI 双向守护系统</span></div></div><div class="mode-switch" aria-label="切换应用端"><button class="active" data-testid="mode-traveler" data-announcement="切换到盲人端">盲人端</button><button class="" data-testid="mode-governance" data-announcement="切换到治理端">治理端</button></div><div class="header-actions"><button class="accessibility-button active">◐ <!-- -->大字高对比：开</button><button class="reset-button" data-testid="reset-demo" data-announcement="重新开始">↻ 重新开始</button></div></header><section class="demo-layout"><aside class="story-panel"><span class="eyebrow">60 秒体验完整闭环</span><h1>从"安全走过"<br/>到"问题被解决"</h1><p>跟随同一次盲道占用事件，体验路见如何连接个人出行与城市治理。</p><div class="story-list"><button class="active " data-testid="story-planner" data-announcement="进入语音查路线"><span>01</span><div><strong>语音查路线</strong><small>出发前选一条更稳妥的路</small></div></button><button class=" " data-testid="story-navigation" data-announcement="进入实时避障"><span>02</span><div><strong>实时避障</strong><small>先看见，再提醒，再绕行</small></div></button><button class=" " data-testid="story-report" data-announcement="进入一键上报"><span>03</span><div><strong>一键上报</strong><small>把本次风险沉淀为证据</small></div></button><button class=" " data-testid="story-governance" data-announcement="进入治理闭环"><span>04</span><div><strong>治理闭环</strong><small>识别、建档、派单、反馈</small></div></button></div><div class="principle-card"><span>产品原则</span><strong>先看见 · 再提醒 · 再绕行</strong><p>一句话立刻听懂，一步操作就能执行。</p></div></aside><section class="phone-column" aria-label="路见应用交互演示"><div class="phone-frame traveler"><div class="phone-status" aria-hidden="true"><span>9:41</span><span class="dynamic-island"></span><span>▮▮▮ ◉ ▰</span></div><div class="phone-voice-status" role="status" aria-live="assertive" aria-atomic="true"><span aria-hidden="true">🔊</span><div><small>手机首次使用需开启语音</small><strong>请先点击"开启语音"，之后每次操作都会播报。</strong></div><button class="voice-enable-button " data-voice-activator="true" aria-label="开启语音播报">开启语音</button></div><div class="phone-scroll"><div class="mobile-header"><button class="icon-button" aria-label="打开功能菜单">☰</button><strong>出发前路线查询</strong><button class="help-button">? 使用帮助</button></div><div class="destination-card"><span class="pin" aria-hidden="true">●</span><div><small>目的地</small><strong>地铁站 A 口</strong><span>全程约 1.2 公里 · 约 18 分钟</span></div><button class="soft-button">切换终点</button></div><button class="voice-query " data-testid="voice-query"><span class="mic-mark" aria-hidden="true">●</span><span><strong>语音查询低风险路线</strong><small>点击说话，快速获取安全路线</small></span></button><div class="empty-hint"><span class="hint-icon" aria-hidden="true">◎</span><strong>试着说："我要去地铁站 A 口"</strong><p>路见会综合近 7 天占用记录，为你比较安全性与时间。</p></div></div><nav class="phone-nav" aria-label="盲人端导航"><button class="active" data-testid="nav-planner"><span>●</span>路线查询</button><button class="" data-testid="nav-navigation"><span>➤</span>实时导航</button><button class=""><span>♢</span>上报</button><button><span>○</span>我的</button></nav><span class="home-indicator" aria-hidden="true"></span></div></section><aside class="console-panel"><div class="console-topline"><span class="live-dot"></span> 实时体验</div><h2>出发前规划</h2><p>比较时间，也比较过去 7 天的盲道占用风险。</p><div class="live-message" aria-live="polite"><span aria-hidden="true">◉</span><div><small>当前播报 / 状态</small><strong>请先点击"开启语音"，之后每次操作都会播报。</strong></div></div><div class="data-card"><div><span>路线风险依据</span><strong>近 7 天占用记录</strong></div><div><span>实时识别</span><strong>96% 置信度</strong></div><div><span>治理事件</span><strong>待上报</strong></div></div><div class="closed-loop"><span>同一事件的双向闭环</span><div><b>盲人端</b><i>识别 → 绕行 → 上报</i></div><em>↓ 同步证据与风险数据</em><div><b>治理端</b><i>建档 → 派单 → 反馈</i></div></div><button class="console-next" data-announcement="进入下一场景">下一场景 <span aria-hidden="true">→</span></button></aside></section><footer class="app-footer"><span>页面数据均为模拟，仅用于产品体验</span><span>Easy Piper · Tech for Good</span></footer></main><script id="_R_">import("./assets/index-BSzK71ck.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-DHezgImu.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-DHezgImu.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-DHezgImu.css\",\"data-rsc-css-href\":\"/assets/index-DHezgImu.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"zh-CN\",\"children\":[\"$\",\"body\",null,{\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"路见｜AI 无障碍通道双向守护\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"体验从语音路线规划、实时避障到城市治理处置的完整产品闭环。\"}],[\"$\",\"meta\",\"2\",{\"property\":\"og:title\",\"content\":\"路见｜无障碍通道 AI 双向守护系统\"}],[\"$\",\"meta\",\"3\",{\"property\":\"og:description\",\"content\":\"从语音路线规划、实时避障到城市治理处置，体验完整产品闭环。\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:image\",\"content\":\"https://lujian-accessibility-demo-0712.red-rice-3957.chatgpt.site/og.png\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:image:width\",\"content\":\"1200\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:image:height\",\"content\":\"630\"}],[\"$\",\"meta\",\"8\",{\"property\":\"og:image:alt\",\"content\":\"路见产品分享封面\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:title\",\"content\":\"路见｜无障碍通道 AI 双向守护系统\"}],[\"$\",\"meta\",\"11\",{\"name\":\"twitter:description\",\"content\":\"体验从安全走过到问题被解决的 AI 无障碍治理闭环。\"}],[\"$\",\"meta\",\"12\",{\"name\":\"twitter:image\",\"content\":\"https://lujian-accessibility-demo-0712.red-rice-3957.chatgpt.site/og.png\"}],[\"$\",\"link\",\"13\",{\"rel\":\"shortcut icon\",\"href\":\"https://lujian-accessibility-demo-0712.red-rice-3957.chatgpt.site/favicon.svg\"}],[\"$\",\"link\",\"14\",{\"rel\":\"icon\",\"href\":\"https://lujian-accessibility-demo-0712.red-rice-3957.chatgpt.site/favicon.svg\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:4uhn5s1wvoptc\",\"deploymentVersion\":\"bb3c4cf0-0221-4040-945a-7b0bd950e67b\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootLayoutId\":\"/\",\"renderEpoch\":null}}\n6:I[\"841cd5d6bb01\",[],\"default\",1]\n1:[\"$\",\"$L6\",null,{}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>
+<body>
+<div id="lujian-ui-prototype">
+  <style>
+    #lujian-ui-prototype { width: 100%; }
+    #lujian-ui-prototype * { box-sizing: border-box; }
+    #lujian-ui-prototype button { font: inherit; }
+    #lujian-ui-prototype .prototype-switch { display: flex; gap: 8px; margin-bottom: 18px; }
+    #lujian-ui-prototype .device-hint { display: flex; align-items: center; gap: 7px; margin: 0 0 8px; color: var(--muted-foreground); }
+    #lujian-ui-prototype .device-hint [data-user-speech-status] { margin-left: auto; }
+    #lujian-ui-prototype .prototype-view[hidden], #lujian-ui-prototype .mobile-screen[hidden], #lujian-ui-prototype .family-screen[hidden] { display: none; }
+    #lujian-ui-prototype .user-stage { display: flex; justify-content: center; align-items: flex-start; padding: 12px 0 28px; }
+    #lujian-ui-prototype .phone { width: min(440px, 100%); border: 1px solid var(--border); border-radius: 30px; background: var(--card); color: var(--card-foreground); overflow: hidden; min-height: 780px; box-shadow: 0 20px 60px color-mix(in srgb, var(--foreground) 12%, transparent); display: flex; flex-direction: column; position: relative; }
+    #lujian-ui-prototype .phone-status { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 8px; color: var(--muted-foreground); }
+    #lujian-ui-prototype .phone-status-group, #lujian-ui-prototype .brand, #lujian-ui-prototype .inline { display: flex; align-items: center; gap: 8px; }
+    #lujian-ui-prototype .mobile-screen { padding: 10px 22px 18px; flex: 1; }
+    #lujian-ui-prototype .mobile-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
+    #lujian-ui-prototype .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; color: var(--primary-foreground); background: var(--primary); }
+    #lujian-ui-prototype .icon-button { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--border); border-radius: 12px; color: var(--foreground); background: transparent; }
+    #lujian-ui-prototype .eyebrow { color: var(--muted-foreground); margin: 0 0 5px; }
+    #lujian-ui-prototype .headline { margin: 0; }
+    #lujian-ui-prototype .safe-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 999px; color: var(--foreground); background: color-mix(in srgb, var(--viz-series-1) 14%, transparent); }
+    #lujian-ui-prototype .hero-action { margin: 26px 0 22px; padding: 26px 22px; border-radius: 22px; background: var(--primary); color: var(--primary-foreground); display: grid; gap: 14px; place-items: center; text-align: center; }
+    #lujian-ui-prototype .hero-mic { width: 74px; height: 74px; border: 0; border-radius: 50%; background: var(--primary-foreground); color: var(--primary); display: grid; place-items: center; }
+    #lujian-ui-prototype .hero-mic svg { width: 30px; height: 30px; }
+    #lujian-ui-prototype .hero-action p { margin: 0; opacity: .82; }
+    #lujian-ui-prototype .section-label { display: flex; justify-content: space-between; align-items: center; margin: 20px 0 10px; }
+    #lujian-ui-prototype .place-list, #lujian-ui-prototype .route-list, #lujian-ui-prototype .queue-list { display: grid; gap: 9px; }
+    #lujian-ui-prototype .place-button, #lujian-ui-prototype .route-card, #lujian-ui-prototype .queue-row { width: 100%; border: 1px solid var(--border); background: transparent; color: var(--foreground); border-radius: 14px; padding: 13px 14px; text-align: left; display: flex; gap: 12px; align-items: center; }
+    #lujian-ui-prototype .place-icon, #lujian-ui-prototype .mini-icon { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 11px; display: grid; place-items: center; background: var(--muted); color: var(--foreground); }
+    #lujian-ui-prototype .place-meta, #lujian-ui-prototype .route-meta { flex: 1; min-width: 0; }
+    #lujian-ui-prototype .place-meta span, #lujian-ui-prototype .route-meta span { display: block; }
+    #lujian-ui-prototype .secondary { color: var(--muted-foreground); }
+    #lujian-ui-prototype .flow-explain { display: none; }
+    #lujian-ui-prototype .flow-explain h2 { margin-bottom: 6px; }
+    #lujian-ui-prototype .flow-steps { display: grid; gap: 10px; margin: 20px 0; }
+    #lujian-ui-prototype .flow-step { display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
+    #lujian-ui-prototype .flow-index { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 999px; background: var(--muted); color: var(--muted-foreground); }
+    #lujian-ui-prototype .flow-step.is-active .flow-index { background: var(--primary); color: var(--primary-foreground); }
+    #lujian-ui-prototype .flow-step p { margin: 3px 0 0; color: var(--muted-foreground); }
+    #lujian-ui-prototype .spec-block { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--border); }
+    #lujian-ui-prototype .spec-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    #lujian-ui-prototype .spec { padding: 13px; background: var(--muted); border-radius: 12px; }
+    #lujian-ui-prototype .spec span { display: block; color: var(--muted-foreground); margin-bottom: 4px; }
+    #lujian-ui-prototype .screen-back { border: 0; background: transparent; color: var(--foreground); display: inline-flex; align-items: center; gap: 6px; padding: 0; }
+    #lujian-ui-prototype .route-summary { padding: 18px; border-radius: 18px; background: color-mix(in srgb, var(--viz-series-1) 13%, transparent); margin: 16px 0; }
+    #lujian-ui-prototype .route-summary-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    #lujian-ui-prototype .route-time { font-size: calc(var(--font-size-base) * 2); font-weight: 500; }
+    #lujian-ui-prototype .route-advice { display: flex; align-items: flex-start; gap: 7px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+    #lujian-ui-prototype .route-advice.is-warning { color: var(--destructive); }
+    #lujian-ui-prototype .reason-list { display: grid; gap: 8px; margin-top: 14px; }
+    #lujian-ui-prototype .reason { display: flex; gap: 8px; align-items: center; }
+    #lujian-ui-prototype .route-card.is-alt { opacity: .72; }
+    #lujian-ui-prototype .mobile-primary { width: 100%; margin-top: 18px; }
+    #lujian-ui-prototype .destination-card { display: grid; grid-template-columns: 42px 1fr auto; gap: 11px; align-items: center; padding: 13px; border: 1px solid var(--border); border-radius: 15px; margin-bottom: 12px; }
+    #lujian-ui-prototype .destination-card strong, #lujian-ui-prototype .destination-card span { display: block; }
+    #lujian-ui-prototype .voice-query { display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: center; padding: 18px; border: 0; width: 100%; border-radius: 18px; background: var(--primary); color: var(--primary-foreground); text-align: left; }
+    #lujian-ui-prototype .voice-query .hero-mic { width: 64px; height: 64px; }
+    #lujian-ui-prototype .voice-query span { display: block; margin-top: 4px; opacity: .8; }
+    #lujian-ui-prototype .voice-result { padding: 13px 14px; margin: 12px 0; border-radius: 14px; background: color-mix(in srgb, var(--viz-series-1) 14%, transparent); }
+    #lujian-ui-prototype .voice-result p { margin: 5px 0 0; }
+    #lujian-ui-prototype .risk-tag { display: inline-flex; align-items: center; gap: 5px; padding: 4px 7px; border-radius: 999px; background: color-mix(in srgb, var(--viz-series-1) 15%, transparent); }
+    #lujian-ui-prototype .risk-tag.high { background: color-mix(in srgb, var(--viz-series-2) 21%, transparent); }
+    #lujian-ui-prototype .risk-tag.medium { background: color-mix(in srgb, var(--viz-series-3) 21%, transparent); }
+    #lujian-ui-prototype .route-letter { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; flex: 0 0 auto; background: var(--muted); color: var(--foreground); }
+    #lujian-ui-prototype .route-card.is-recommended { border-color: var(--ring); background: color-mix(in srgb, var(--viz-series-1) 9%, transparent); }
+    #lujian-ui-prototype .mobile-tabbar { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); background: var(--card); padding: 8px 10px 12px; }
+    #lujian-ui-prototype .mobile-tabbar button { border: 0; background: transparent; color: var(--muted-foreground); padding: 7px 2px; display: grid; gap: 3px; place-items: center; }
+    #lujian-ui-prototype .mobile-tabbar button.is-active { color: var(--foreground); }
+    #lujian-ui-prototype .mobile-tabbar button.is-active svg { color: var(--viz-series-1); }
+    #lujian-ui-prototype [data-user-tabbar][hidden] { display: none; }
+    #lujian-ui-prototype .simple-list { display: grid; gap: 10px; margin-top: 18px; }
+    #lujian-ui-prototype .simple-item { padding: 14px; border: 1px solid var(--border); border-radius: 14px; display: flex; align-items: center; gap: 12px; }
+    #lujian-ui-prototype .simple-item > div { flex: 1; }
+    #lujian-ui-prototype .simple-item span { display: block; color: var(--muted-foreground); margin-top: 3px; }
+    #lujian-ui-prototype .toast { position: absolute; right: 22px; bottom: 22px; max-width: 360px; pointer-events: none; padding: 12px 15px; border-radius: 12px; background: var(--primary); color: var(--primary-foreground); box-shadow: 0 12px 34px color-mix(in srgb, var(--foreground) 16%, transparent); }
+    #lujian-ui-prototype .phone .toast { left: 16px; right: 16px; bottom: 76px; max-width: none; z-index: 4; }
+    #lujian-ui-prototype .gov-main { position: relative; }
+    #lujian-ui-prototype .family-hero { padding: 18px; border-radius: 20px; background: var(--primary); color: var(--primary-foreground); margin-bottom: 14px; }
+    #lujian-ui-prototype .family-hero-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    #lujian-ui-prototype .family-hero p { margin: 5px 0 0; opacity: .82; }
+    #lujian-ui-prototype .permission-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 8px; border-radius: 999px; background: color-mix(in srgb, var(--primary-foreground) 16%, transparent); color: var(--primary-foreground); }
+    #lujian-ui-prototype .trip-progress { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; margin-top: 18px; }
+    #lujian-ui-prototype .trip-progress-line { height: 6px; border-radius: 6px; background: color-mix(in srgb, var(--primary-foreground) 24%, transparent); overflow: hidden; }
+    #lujian-ui-prototype .trip-progress-line span { display: block; width: 58%; height: 100%; background: var(--primary-foreground); border-radius: inherit; }
+    #lujian-ui-prototype .family-map { height: 230px; margin: 12px 0 14px; }
+    #lujian-ui-prototype .family-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 18px; }
+    #lujian-ui-prototype .family-action { border: 1px solid var(--border); background: transparent; color: var(--foreground); border-radius: 14px; padding: 12px 5px; display: grid; gap: 6px; place-items: center; }
+    #lujian-ui-prototype .family-action.is-emergency { background: color-mix(in srgb, var(--viz-series-2) 15%, transparent); }
+    #lujian-ui-prototype .family-screen { padding: 10px 22px 18px; flex: 1; }
+    #lujian-ui-prototype .family-setting { padding: 14px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+    #lujian-ui-prototype .family-setting:last-child { border-bottom: 0; }
+    #lujian-ui-prototype .family-setting strong, #lujian-ui-prototype .family-setting span { display: block; }
+    #lujian-ui-prototype .family-setting span { color: var(--muted-foreground); margin-top: 3px; }
+    #lujian-ui-prototype .family-help-list { display: grid; gap: 12px; }
+    #lujian-ui-prototype .family-help-item { padding: 15px 0; border-bottom: 1px solid var(--border); }
+    #lujian-ui-prototype .family-help-item p { margin: 5px 0 0; color: var(--muted-foreground); }
+    #lujian-ui-prototype .gov-page[hidden] { display: none; }
+    #lujian-ui-prototype .page-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 14px; }
+    #lujian-ui-prototype .region-map { height: 520px; }
+    #lujian-ui-prototype .region-side { display: grid; gap: 12px; align-content: start; }
+    #lujian-ui-prototype .region-card { padding: 15px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
+    #lujian-ui-prototype .region-card strong { display: block; margin-bottom: 6px; }
+    #lujian-ui-prototype .region-rank { display: grid; gap: 9px; margin-top: 10px; }
+    #lujian-ui-prototype .rank-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    #lujian-ui-prototype .rank-row:last-child { border-bottom: 0; }
+    #lujian-ui-prototype .toolbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+    #lujian-ui-prototype .toolbar-group { display: flex; gap: 8px; flex-wrap: wrap; }
+    #lujian-ui-prototype .order-table-wrap { border: 1px solid var(--border); border-radius: 15px; overflow: hidden; background: var(--card); }
+    #lujian-ui-prototype .order-table-wrap table { margin: 0; }
+    #lujian-ui-prototype .analytics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    #lujian-ui-prototype .chart-panel { padding: 17px; border: 1px solid var(--border); border-radius: 15px; background: var(--card); }
+    #lujian-ui-prototype .bar-chart { height: 220px; display: flex; gap: 14px; align-items: end; padding-top: 20px; }
+    #lujian-ui-prototype .bar-column { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; text-align: center; color: var(--muted-foreground); }
+    #lujian-ui-prototype .bar { width: 100%; min-height: 14px; border-radius: 8px 8px 3px 3px; background: var(--viz-series-1); }
+    #lujian-ui-prototype .trend-chart { height: 220px; position: relative; background: linear-gradient(to bottom, transparent 24%, var(--border) 25%, transparent 26%, transparent 49%, var(--border) 50%, transparent 51%, transparent 74%, var(--border) 75%, transparent 76%); }
+    #lujian-ui-prototype .trend-chart svg { width: 100%; height: 100%; }
+    #lujian-ui-prototype .trend-chart polyline { fill: none; stroke: var(--viz-series-1); stroke-width: 3; }
+    #lujian-ui-prototype .nav-instruction { padding: 18px; margin: 8px 0 14px; border-radius: 18px; background: var(--primary); color: var(--primary-foreground); display: flex; align-items: center; gap: 16px; }
+    #lujian-ui-prototype .turn-icon { width: 58px; height: 58px; flex: 0 0 auto; border-radius: 16px; background: var(--primary-foreground); color: var(--primary); display: grid; place-items: center; }
+    #lujian-ui-prototype .turn-icon svg { width: 30px; height: 30px; }
+    #lujian-ui-prototype .nav-instruction p { margin: 4px 0 0; opacity: .82; }
+    #lujian-ui-prototype .route-map { height: 310px; position: relative; overflow: hidden; border-radius: 18px; background: color-mix(in srgb, var(--viz-series-1) 10%, var(--muted)); }
+    #lujian-ui-prototype .scan-live { display: flex; align-items: center; gap: 10px; padding: 11px 13px; margin-bottom: 10px; border-radius: 14px; background: var(--foreground); color: var(--background); }
+    #lujian-ui-prototype .scan-live strong, #lujian-ui-prototype .scan-live span { display: block; }
+    #lujian-ui-prototype .scan-live span { opacity: .72; margin-top: 2px; }
+    #lujian-ui-prototype .scan-live-dot { width: 11px; height: 11px; flex: 0 0 auto; border-radius: 50%; background: var(--viz-series-1); box-shadow: 0 0 0 7px color-mix(in srgb, var(--viz-series-1) 20%, transparent); }
+    #lujian-ui-prototype .scan-zone { position: absolute; width: 96px; height: 96px; right: 12%; top: 17%; border-radius: 50%; border: 2px solid var(--viz-series-2); box-shadow: 0 0 0 14px color-mix(in srgb, var(--viz-series-2) 11%, transparent), 0 0 0 30px color-mix(in srgb, var(--viz-series-2) 6%, transparent); }
+    #lujian-ui-prototype .scan-label { right: 7%; top: 7%; left: auto !important; bottom: auto !important; }
+    #lujian-ui-prototype .road { position: absolute; height: 12px; border-radius: 10px; background: color-mix(in srgb, var(--foreground) 12%, transparent); }
+    #lujian-ui-prototype .road.r1 { width: 112%; left: -7%; top: 31%; transform: rotate(16deg); }
+    #lujian-ui-prototype .road.r2 { width: 90%; left: 12%; top: 60%; transform: rotate(-24deg); }
+    #lujian-ui-prototype .road.r3 { width: 75%; left: -3%; top: 73%; transform: rotate(5deg); }
+    #lujian-ui-prototype .route-line { position: absolute; width: 63%; height: 7px; left: 16%; top: 49%; background: var(--viz-series-1); border-radius: 7px; transform: rotate(-18deg); }
+    #lujian-ui-prototype .route-dot { position: absolute; width: 18px; height: 18px; border: 4px solid var(--card); border-radius: 50%; background: var(--viz-series-1); }
+    #lujian-ui-prototype .route-dot.start { left: 17%; top: 61%; }
+    #lujian-ui-prototype .route-dot.end { right: 19%; top: 31%; }
+    #lujian-ui-prototype .map-label { position: absolute; padding: 5px 8px; border-radius: 7px; background: var(--card); color: var(--card-foreground); }
+    #lujian-ui-prototype .map-label.l1 { left: 8%; top: 18%; }
+    #lujian-ui-prototype .map-label.l2 { right: 8%; bottom: 14%; }
+    #lujian-ui-prototype .nav-footer { display: grid; gap: 10px; margin-top: 14px; }
+    #lujian-ui-prototype .nav-status { padding: 12px 14px; background: var(--muted); border-radius: 13px; }
+    #lujian-ui-prototype .demo-obstacle { width: 100%; }
+    #lujian-ui-prototype .alert-screen { display: grid; grid-template-rows: auto 1fr auto; min-height: 570px; background: var(--foreground); color: var(--background); }
+    #lujian-ui-prototype .alert-screen .secondary { color: color-mix(in srgb, var(--background) 72%, transparent); }
+    #lujian-ui-prototype .alert-screen .safe-pill { color: var(--background); background: color-mix(in srgb, var(--background) 15%, transparent); }
+    #lujian-ui-prototype .alert-core { text-align: center; padding: 18px 4px 24px; }
+    #lujian-ui-prototype .alert-symbol { width: 94px; height: 94px; margin: 0 auto 22px; border-radius: 28px; display: grid; place-items: center; background: color-mix(in srgb, var(--viz-series-2) 28%, transparent); color: var(--foreground); }
+    #lujian-ui-prototype .alert-symbol svg { width: 46px; height: 46px; }
+    #lujian-ui-prototype .alert-distance { font-size: calc(var(--font-size-base) * 2.4); font-weight: 500; margin: 8px 0; }
+    #lujian-ui-prototype .alert-command { margin: 6px 0; font-size: calc(var(--font-size-base) * 1.65); font-weight: 500; }
+    #lujian-ui-prototype .alert-progress { display: flex; justify-content: center; gap: 8px; margin: 20px 0 12px; }
+    #lujian-ui-prototype .alert-progress span { width: 34px; height: 6px; border-radius: 8px; background: color-mix(in srgb, var(--background) 20%, transparent); }
+    #lujian-ui-prototype .alert-progress span.is-active { background: var(--viz-series-1); }
+    #lujian-ui-prototype .alert-step-card { padding: 17px; border-radius: 17px; background: color-mix(in srgb, var(--background) 12%, transparent); text-align: left; }
+    #lujian-ui-prototype .alert-step-card strong { display: block; margin: 8px 0 4px; font-size: calc(var(--font-size-base) * 1.35); font-weight: 500; }
+    #lujian-ui-prototype .alert-step-card p { margin: 0; color: color-mix(in srgb, var(--background) 72%, transparent); }
+    #lujian-ui-prototype .alert-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    #lujian-ui-prototype .alert-actions button { min-height: 56px; }
+    #lujian-ui-prototype .alert-primary-action { border: 0; border-radius: 12px; background: var(--primary); color: var(--primary-foreground); }
+
+    #lujian-ui-prototype .gov-shell { display: grid; grid-template-columns: 210px minmax(0, 1fr); min-height: 760px; border: 1px solid var(--border); border-radius: 22px; overflow: hidden; background: var(--background); }
+    #lujian-ui-prototype .gov-sidebar { padding: 20px 16px; border-right: 1px solid var(--border); background: var(--card); }
+    #lujian-ui-prototype .gov-brand { margin-bottom: 30px; }
+    #lujian-ui-prototype .gov-nav { display: grid; gap: 6px; }
+    #lujian-ui-prototype .gov-nav button { border: 0; background: transparent; color: var(--muted-foreground); border-radius: 10px; padding: 11px 12px; display: flex; align-items: center; gap: 10px; text-align: left; }
+    #lujian-ui-prototype .gov-nav button.is-active { background: var(--primary); color: var(--primary-foreground); }
+    #lujian-ui-prototype .gov-main { min-width: 0; }
+    #lujian-ui-prototype .gov-top { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 18px 22px; border-bottom: 1px solid var(--border); }
+    #lujian-ui-prototype .gov-title p { margin: 3px 0 0; color: var(--muted-foreground); }
+    #lujian-ui-prototype .gov-actions { display: flex; gap: 8px; align-items: center; }
+    #lujian-ui-prototype .gov-content { padding: 20px 22px 24px; }
+    #lujian-ui-prototype .gov-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    #lujian-ui-prototype .gov-stat { padding: 15px; border: 1px solid var(--border); border-radius: 14px; }
+    #lujian-ui-prototype .gov-stat span { color: var(--muted-foreground); }
+    #lujian-ui-prototype .gov-stat strong { display: block; margin-top: 6px; font-size: calc(var(--font-size-base) * 1.5); font-weight: 500; }
+    #lujian-ui-prototype .gov-workbench { display: grid; grid-template-columns: minmax(270px, .8fr) minmax(380px, 1.2fr); gap: 14px; }
+    #lujian-ui-prototype .queue-panel, #lujian-ui-prototype .map-panel, #lujian-ui-prototype .detail-panel { border: 1px solid var(--border); border-radius: 16px; background: var(--card); color: var(--card-foreground); }
+    #lujian-ui-prototype .panel-head { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+    #lujian-ui-prototype .panel-head p { margin: 3px 0 0; color: var(--muted-foreground); }
+    #lujian-ui-prototype .queue-list { padding: 9px; }
+    #lujian-ui-prototype .queue-row { border-color: transparent; border-radius: 11px; }
+    #lujian-ui-prototype .queue-row.is-active { border-color: var(--ring); background: var(--accent); color: var(--accent-foreground); }
+    #lujian-ui-prototype .severity { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; background: var(--viz-series-2); }
+    #lujian-ui-prototype .severity.medium { background: var(--viz-series-3); }
+    #lujian-ui-prototype .severity.low { background: var(--viz-series-1); }
+    #lujian-ui-prototype .queue-content { min-width: 0; flex: 1; }
+    #lujian-ui-prototype .queue-content span { display: block; }
+    #lujian-ui-prototype .queue-time { color: var(--muted-foreground); white-space: nowrap; }
+    #lujian-ui-prototype .map-panel { overflow: hidden; }
+    #lujian-ui-prototype .gov-map { height: 334px; position: relative; overflow: hidden; background: color-mix(in srgb, var(--viz-series-1) 9%, var(--muted)); }
+    #lujian-ui-prototype .gov-map .road { height: 10px; }
+    #lujian-ui-prototype .map-pin { position: absolute; width: 30px; height: 30px; border-radius: 50% 50% 50% 8px; transform: rotate(-45deg); background: var(--viz-series-2); color: var(--background); display: grid; place-items: center; border: 3px solid var(--background); }
+    #lujian-ui-prototype .map-pin span { transform: rotate(45deg); }
+    #lujian-ui-prototype .map-pin.p1 { left: 32%; top: 43%; }
+    #lujian-ui-prototype .map-pin.p2 { left: 63%; top: 27%; background: var(--viz-series-3); }
+    #lujian-ui-prototype .map-pin.p3 { left: 72%; top: 66%; background: var(--viz-series-1); }
+    #lujian-ui-prototype .map-pin.p4 { left: 20%; top: 70%; background: var(--viz-series-3); }
+    #lujian-ui-prototype .map-legend { padding: 11px 14px; display: flex; flex-wrap: wrap; gap: 14px; color: var(--muted-foreground); }
+    #lujian-ui-prototype .legend-item { display: flex; align-items: center; gap: 6px; }
+    #lujian-ui-prototype .detail-panel { grid-column: 1 / -1; }
+    #lujian-ui-prototype .detail-body { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 16px; }
+    #lujian-ui-prototype .evidence { display: grid; grid-template-columns: 140px 1fr; gap: 14px; }
+    #lujian-ui-prototype .evidence-photo { min-height: 128px; border-radius: 12px; background: linear-gradient(135deg, color-mix(in srgb, var(--foreground) 8%, transparent), color-mix(in srgb, var(--viz-series-2) 17%, transparent)); display: grid; place-items: center; color: var(--muted-foreground); }
+    #lujian-ui-prototype .evidence-list { display: grid; gap: 7px; align-content: start; }
+    #lujian-ui-prototype .evidence-item { display: flex; gap: 8px; align-items: flex-start; }
+    #lujian-ui-prototype .work-order { border-left: 1px solid var(--border); padding-left: 18px; }
+    #lujian-ui-prototype .status-track { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin: 12px 0 16px; }
+    #lujian-ui-prototype .status-node { text-align: center; color: var(--muted-foreground); }
+    #lujian-ui-prototype .status-node::before { content: ""; display: block; height: 7px; border-radius: 6px; background: var(--muted); margin-bottom: 7px; }
+    #lujian-ui-prototype .status-node.is-done { color: var(--foreground); }
+    #lujian-ui-prototype .status-node.is-done::before { background: var(--viz-series-1); }
+    #lujian-ui-prototype .work-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    #lujian-ui-prototype .field-box { padding: 10px 12px; background: var(--muted); border-radius: 10px; }
+    #lujian-ui-prototype .field-box span { display: block; color: var(--muted-foreground); margin-bottom: 3px; }
+    @media (min-width: 1180px) {
+      #lujian-ui-prototype .gov-workbench { grid-template-columns: minmax(210px, .72fr) minmax(275px, 1fr) minmax(330px, 1.18fr); align-items: start; }
+      #lujian-ui-prototype .detail-panel { grid-column: auto; }
+      #lujian-ui-prototype .detail-body { grid-template-columns: 1fr; gap: 11px; padding: 12px; }
+      #lujian-ui-prototype .evidence { grid-template-columns: 96px 1fr; gap: 10px; }
+      #lujian-ui-prototype .evidence-photo { min-height: 92px; }
+      #lujian-ui-prototype .work-order { border-left: 0; border-top: 1px solid var(--border); padding: 11px 0 0; }
+      #lujian-ui-prototype .status-track { margin: 8px 0 10px; }
+      #lujian-ui-prototype .work-fields { gap: 7px; margin-bottom: 8px; }
+      #lujian-ui-prototype .field-box { padding: 8px 9px; }
+      #lujian-ui-prototype .gov-map { height: 292px; }
+    }
+    @media (max-width: 980px) {
+      #lujian-ui-prototype .user-stage { display: flex; }
+      #lujian-ui-prototype .gov-shell { grid-template-columns: 1fr; }
+      #lujian-ui-prototype .gov-sidebar { border-right: 0; border-bottom: 1px solid var(--border); }
+      #lujian-ui-prototype .gov-nav { grid-template-columns: repeat(4, 1fr); }
+      #lujian-ui-prototype .gov-brand { margin-bottom: 14px; }
+    }
+    @media (max-width: 720px) {
+      #lujian-ui-prototype .gov-workbench, #lujian-ui-prototype .detail-body, #lujian-ui-prototype .evidence { grid-template-columns: 1fr; }
+      #lujian-ui-prototype .page-grid, #lujian-ui-prototype .analytics-grid { grid-template-columns: 1fr; }
+      #lujian-ui-prototype .work-order { border-left: 0; border-top: 1px solid var(--border); padding: 16px 0 0; }
+      #lujian-ui-prototype .gov-stats, #lujian-ui-prototype .spec-list { grid-template-columns: 1fr; }
+      #lujian-ui-prototype .gov-nav { grid-template-columns: repeat(2, 1fr); }
+      #lujian-ui-prototype .gov-top { align-items: flex-start; }
+    }
+  </style>
+
+  <div class="prototype-switch" role="group" aria-label="切换产品端">
+    <button type="button" class="btn btn-primary" data-view-button="user" aria-pressed="true">出行端</button>
+    <button type="button" class="btn" data-view-button="family" aria-pressed="false">家属守护端（可选）</button>
+    <button type="button" class="btn" data-view-button="governance" aria-pressed="false">治理端</button>
+  </div>
+
+  <section class="prototype-view" data-view="user">
+    <div class="device-hint"><i data-lucide="smartphone" aria-hidden="true"></i><span>建议使用手机查看</span><span data-user-speech-status aria-live="polite">出行端按钮语音已开启</span></div>
+    <div class="user-stage">
+      <div class="phone" aria-label="路见视障用户端交互原型">
+        <div class="phone-status"><span>9:41</span><span class="phone-status-group"><i data-lucide="signal" aria-hidden="true"></i><i data-lucide="wifi" aria-hidden="true"></i><i data-lucide="battery-full" aria-hidden="true"></i></span></div>
+
+        <div class="mobile-screen" data-mobile-screen="home">
+          <div class="mobile-head"><div class="brand"><span class="brand-mark"><i data-lucide="route" aria-hidden="true"></i></span><div><strong>出发前路线查询</strong><div class="secondary">按道路风险规划更稳妥的路线</div></div></div><div class="inline"><button type="button" class="icon-button" data-voice-test data-speech="语音播报正常。路见将为每一个按钮和导航指令提供语音反馈。" aria-label="测试语音播报"><i data-lucide="volume-2" aria-hidden="true"></i></button><button type="button" class="icon-button" data-mobile-action="help" aria-label="使用帮助"><i data-lucide="circle-help" aria-hidden="true"></i></button></div></div>
+          <div class="destination-card"><span class="place-icon"><i data-lucide="map-pin" aria-hidden="true"></i></span><div><span class="secondary">目的地</span><strong>德基广场一期 1 号门</strong><span class="secondary">全程约 2.1 公里</span></div><button type="button" class="btn" data-mobile-action="change-destination">更换</button></div>
+          <button type="button" class="voice-query" id="voice-query-button"><span class="hero-mic"><i data-lucide="mic" aria-hidden="true"></i></span><span><strong>语音查询低风险路线</strong><span>点击说话，快速获得路线建议</span></span></button>
+          <div class="voice-result" id="voice-result"><div class="inline"><i data-lucide="volume-2" aria-hidden="true"></i><strong>语音播报结果</strong></div><p>已找到 3 条路线。推荐路线 B，过去 7 天盲道占用最低，预计多走 3 分钟。</p></div>
+          <div class="section-label"><strong>路线风险对比</strong><span class="secondary">近 7 天数据</span></div>
+          <div class="route-list">
+            <button type="button" class="route-card" data-go-screen="route" data-route="A"><span class="route-letter">A</span><span class="route-meta"><strong>路线 A · 24 分钟</strong><span class="secondary">2.0 公里 · 占用率 78%</span></span><span class="risk-tag high">高风险</span></button>
+            <button type="button" class="route-card is-recommended" data-go-screen="route" data-route="B"><span class="route-letter">B</span><span class="route-meta"><strong>路线 B · 27 分钟</strong><span class="secondary">2.1 公里 · 占用率 18%</span></span><span class="risk-tag">推荐 · 低风险</span></button>
+            <button type="button" class="route-card" data-go-screen="route" data-route="C"><span class="route-letter">C</span><span class="route-meta"><strong>路线 C · 31 分钟</strong><span class="secondary">2.4 公里 · 占用率 42%</span></span><span class="risk-tag medium">中风险</span></button>
+          </div>
+        </div>
+
+        <div class="mobile-screen" data-mobile-screen="route" hidden>
+          <div class="mobile-head"><button type="button" class="screen-back" data-go-screen="home"><i data-lucide="arrow-left" aria-hidden="true"></i>返回</button><button type="button" class="icon-button" aria-label="重新输入目的地"><i data-lucide="mic" aria-hidden="true"></i></button></div>
+          <p class="eyebrow">目的地</p><h2 class="headline">德基广场一期 1 号门</h2>
+          <div class="route-summary">
+            <div class="route-summary-top"><div><span class="safe-pill" id="selected-route-label"><i data-lucide="shield-check" aria-hidden="true"></i>路线 B · 安全优先</span><div class="route-time" id="selected-route-time">27 分钟</div><span class="secondary" id="selected-route-meta">2.1 公里 · 比最快路线多 3 分钟</span></div><i data-lucide="navigation" aria-hidden="true"></i></div>
+            <div class="reason-list" id="selected-route-reasons"><div class="reason"><i data-lucide="circle-check" aria-hidden="true"></i><span>避开 2 处临时占道</span></div><div class="reason"><i data-lucide="circle-check" aria-hidden="true"></i><span>全程包含连续盲道</span></div><div class="reason"><i data-lucide="circle-check" aria-hidden="true"></i><span>仅需通过 1 个大型路口</span></div></div>
+            <div class="route-advice" id="selected-route-advice"><i data-lucide="shield-check" aria-hidden="true"></i><strong>推荐选择：当前路线风险最低。</strong></div>
+          </div>
+          <div class="section-label"><strong>其他路线</strong><span class="secondary">可选</span></div>
+          <div class="route-list"><button type="button" class="route-card is-alt"><span class="mini-icon"><i data-lucide="zap" aria-hidden="true"></i></span><span class="route-meta"><strong>最快路线 · 24 分钟</strong><span class="secondary">存在 2 处施工，建议谨慎</span></span><i data-lucide="chevron-right" aria-hidden="true"></i></button><button type="button" class="route-card is-alt"><span class="mini-icon"><i data-lucide="ruler" aria-hidden="true"></i></span><span class="route-meta"><strong>最短路线 · 1.8 公里</strong><span class="secondary">需穿过共享单车密集路段</span></span><i data-lucide="chevron-right" aria-hidden="true"></i></button></div>
+          <button type="button" class="btn btn-primary btn-block mobile-primary" id="start-navigation-button" data-go-screen="navigation">开始安全导航</button>
+        </div>
+
+        <div class="mobile-screen" data-mobile-screen="navigation" hidden>
+          <div class="mobile-head"><button type="button" class="screen-back" data-go-screen="route"><i data-lucide="x" aria-hidden="true"></i>结束导航</button><span class="safe-pill"><i data-lucide="volume-2" aria-hidden="true"></i>语音开启</span></div>
+          <div class="nav-instruction"><span class="turn-icon"><i data-lucide="corner-up-right" aria-hidden="true"></i></span><div><strong>前方 20 米右转</strong><p>进入中山东路辅路</p></div></div>
+          <div class="scan-live"><span class="scan-live-dot"></span><div><strong>AI 障碍识别运行中</strong><span>持续扫描前方 15 米盲道与通行区域</span></div></div>
+          <div class="route-map" role="img" aria-label="前往德基广场的导航路线，AI 正在扫描前方十五米障碍物">
+            <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><div class="route-line"></div><span class="route-dot start"></span><span class="route-dot end"></span><span class="scan-zone"></span><span class="map-label l1">珠江路</span><span class="map-label l2">中山东路</span><span class="map-label scan-label">扫描前方 15 米</span>
+          </div>
+          <div class="nav-footer"><div class="nav-status"><strong>当前未发现障碍</strong><div class="secondary">最近一次识别 0.8 秒前 · 持续扫描中</div></div><button type="button" class="btn btn-block demo-obstacle" data-go-screen="alert" aria-label="演示扫描到前方障碍物"><i data-lucide="triangle-alert" aria-hidden="true"></i> 演示：识别到前方障碍</button></div>
+        </div>
+
+        <div class="mobile-screen alert-screen" data-mobile-screen="alert" hidden>
+          <div class="mobile-head"><span class="brand"><span class="brand-mark"><i data-lucide="shield-alert" aria-hidden="true"></i></span><strong>风险警报</strong></span><span class="safe-pill"><i data-lucide="vibrate" aria-hidden="true"></i>语音 + 震动</span></div>
+          <div class="alert-core"><div class="alert-symbol"><i data-lucide="construction" aria-hidden="true"></i></div><p class="eyebrow">高风险 · 前方 8 米</p><div class="alert-command">请停止前进</div><p class="secondary">前方盲道被临时围挡占用，正在引导你安全绕行。</p><div class="alert-progress" aria-label="绕行共三步"><span class="is-active" data-alert-progress="0"></span><span data-alert-progress="1"></span><span data-alert-progress="2"></span></div><div class="alert-step-card"><span class="viz-badge" id="alert-step-index">步骤 1 / 3</span><strong id="alert-step-title">向左移动 1 米</strong><p id="alert-step-detail">请先确认左侧无车辆或台阶，再缓慢向左移动。</p></div></div>
+          <div class="alert-actions"><button type="button" class="btn" data-alert-replay data-speech="第一步，请先停止前进。确认左侧安全后，缓慢向左移动一米。">重播本步</button><button type="button" class="alert-primary-action" data-alert-next data-speech="第二步，保持当前方向，直行十二米。系统将继续扫描前方障碍。">完成本步，继续</button></div>
+        </div>
+        <div class="mobile-screen" data-mobile-screen="messages" hidden>
+          <div class="mobile-head"><div><p class="eyebrow">路况更新</p><h2 class="headline">消息</h2></div><button type="button" class="icon-button" data-mobile-action="read-all" aria-label="全部标为已读"><i data-lucide="check-check" aria-hidden="true"></i></button></div>
+          <div class="simple-list"><div class="simple-item"><span class="place-icon"><i data-lucide="construction" aria-hidden="true"></i></span><div><strong>珠江路临时施工已结束</strong><span>相关路线风险已下调 · 10 分钟前</span></div></div><div class="simple-item"><span class="place-icon"><i data-lucide="shield-check" aria-hidden="true"></i></span><div><strong>常用路线安全数据已更新</strong><span>新增 3 个已治理点位 · 今天 08:20</span></div></div><div class="simple-item"><span class="place-icon"><i data-lucide="route" aria-hidden="true"></i></span><div><strong>上次路线已完成复核</strong><span>中山东路盲道恢复通行 · 昨天</span></div></div></div>
+        </div>
+        <div class="mobile-screen" data-mobile-screen="profile" hidden>
+          <div class="mobile-head"><div><p class="eyebrow">个人中心</p><h2 class="headline">我的</h2></div><button type="button" class="icon-button" data-mobile-action="settings" aria-label="设置"><i data-lucide="settings" aria-hidden="true"></i></button></div>
+          <div class="simple-list"><button type="button" class="place-button" data-mobile-action="saved-places"><span class="place-icon"><i data-lucide="map-pinned" aria-hidden="true"></i></span><span class="place-meta"><strong>常用地点</strong><span class="secondary">已保存 4 个地点</span></span><i data-lucide="chevron-right" aria-hidden="true"></i></button><button type="button" class="place-button" data-mobile-action="preferences"><span class="place-icon"><i data-lucide="sliders-horizontal" aria-hidden="true"></i></span><span class="place-meta"><strong>导航偏好</strong><span class="secondary">安全优先 · 自动绕行</span></span><i data-lucide="chevron-right" aria-hidden="true"></i></button><button type="button" class="place-button" data-mobile-action="voice-settings"><span class="place-icon"><i data-lucide="audio-lines" aria-hidden="true"></i></span><span class="place-meta"><strong>语音与震动</strong><span class="secondary">语速 1.0x · 强震动</span></span><i data-lucide="chevron-right" aria-hidden="true"></i></button><button type="button" class="place-button" data-mobile-action="emergency"><span class="place-icon"><i data-lucide="contact-round" aria-hidden="true"></i></span><span class="place-meta"><strong>紧急联系人</strong><span class="secondary">已设置 1 人</span></span><i data-lucide="chevron-right" aria-hidden="true"></i></button></div>
+        </div>
+        <div class="toast" id="mobile-toast" hidden aria-live="polite"></div>
+        <nav class="mobile-tabbar" data-user-tabbar aria-label="用户端主导航"><button type="button" class="is-active" data-mobile-tab="home"><i data-lucide="route" aria-hidden="true"></i><span>路线查询</span></button><button type="button" data-mobile-tab="navigation"><i data-lucide="navigation" aria-hidden="true"></i><span>实时导航</span></button><button type="button" data-mobile-tab="messages"><i data-lucide="bell" aria-hidden="true"></i><span>消息</span></button><button type="button" data-mobile-tab="profile"><i data-lucide="user-round" aria-hidden="true"></i><span>我的</span></button></nav>
+      </div>
+
+      <aside class="flow-explain">
+        <p class="eyebrow">当前展示</p><h2 id="flow-title">01 出发前路线查询</h2><p class="secondary" id="flow-description">目的地、语音查询、播报结果和三条风险路线在同一屏完成。</p>
+        <div class="flow-steps">
+          <div class="flow-step is-active" data-flow-step="home"><span class="flow-index">1</span><div><strong>查询并比较路线</strong><p>保留原方案清晰的 A/B/C 风险路线结构。</p></div></div>
+          <div class="flow-step" data-flow-step="route"><span class="flow-index">2</span><div><strong>解释推荐路线</strong><p>系统给结论，同时说清为何更安全。</p></div></div>
+          <div class="flow-step" data-flow-step="navigation"><span class="flow-index">3</span><div><strong>指令优先导航</strong><p>移动中只突出下一动作和风险状态。</p></div></div>
+          <div class="flow-step" data-flow-step="alert"><span class="flow-index">4</span><div><strong>分级警报与自动绕行</strong><p>高风险直接打断，系统先行动再允许撤销。</p></div></div>
+        </div>
+        <div class="spec-block"><strong>已经落实的 UI 规则</strong><div class="spec-list"><div class="spec"><span>触控</span>关键按钮 ≥ 48 px</div><div class="spec"><span>信息</span>每屏一个首要动作</div><div class="spec"><span>风险</span>颜色 + 图标 + 文字</div><div class="spec"><span>反馈</span>语音 + 震动 + 视觉</div></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="prototype-view" data-view="family" hidden>
+    <div class="device-hint"><i data-lucide="smartphone" aria-hidden="true"></i><span>建议使用手机查看</span></div>
+    <div class="user-stage">
+      <div class="phone" aria-label="路见家属守护端交互原型">
+        <div class="phone-status"><span>9:41</span><span class="phone-status-group"><i data-lucide="signal" aria-hidden="true"></i><i data-lucide="wifi" aria-hidden="true"></i><i data-lucide="battery-full" aria-hidden="true"></i></span></div>
+        <div class="family-screen" data-family-screen="trip">
+          <div class="mobile-head"><div class="brand"><span class="brand-mark"><i data-lucide="heart-handshake" aria-hidden="true"></i></span><div><strong>同行守护</strong><div class="secondary">仅展示本人授权的信息</div></div></div><button type="button" class="icon-button" data-family-tab="settings" aria-label="授权与隐私"><i data-lucide="shield-check" aria-hidden="true"></i></button></div>
+          <div class="family-hero"><div class="family-hero-top"><div><span class="permission-pill"><i data-lucide="key-round" aria-hidden="true"></i>可选守护 · 本次行程已授权</span><h2>正在前往德基广场</h2><p>预计 10:08 到达 · 剩余 1.2 公里</p></div><i data-lucide="navigation" aria-hidden="true"></i></div><div class="trip-progress"><span>出发</span><div class="trip-progress-line"><span></span></div><span>到达</span></div></div>
+          <div class="route-map family-map" role="img" aria-label="当前授权行程的位置与路线示意"><div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><div class="route-line"></div><span class="route-dot start"></span><span class="route-dot end"></span><span class="map-label l1">当前位置</span><span class="map-label l2">德基广场</span></div>
+          <div class="family-actions"><button type="button" class="family-action" data-family-action="voice"><i data-lucide="message-circle-more" aria-hidden="true"></i><span>语音留言</span></button><button type="button" class="family-action" data-family-action="call"><i data-lucide="phone" aria-hidden="true"></i><span>联系本人</span></button><button type="button" class="family-action is-emergency" data-family-action="emergency"><i data-lucide="siren" aria-hidden="true"></i><span>异常求助</span></button></div>
+          <div class="section-label"><strong>行程动态</strong><span class="secondary">仅异常与关键节点提醒</span></div>
+          <div class="simple-list"><div class="simple-item"><span class="place-icon"><i data-lucide="shield-check" aria-hidden="true"></i></span><div><strong>已自动绕开施工路段</strong><span>路线增加约 2 分钟 · 2 分钟前</span></div></div><div class="simple-item"><span class="place-icon"><i data-lucide="navigation" aria-hidden="true"></i></span><div><strong>行程进展正常</strong><span>已完成约 58% · 当前位置持续更新</span></div></div></div>
+        </div>
+        <div class="family-screen" data-family-screen="notifications" hidden>
+          <div class="mobile-head"><div><p class="eyebrow">关键节点与异常</p><h2 class="headline">守护通知</h2></div><button type="button" class="icon-button" data-family-action="read-family-all" aria-label="全部标为已读"><i data-lucide="check-check" aria-hidden="true"></i></button></div>
+          <div class="simple-list"><div class="simple-item"><span class="place-icon"><i data-lucide="shield-check" aria-hidden="true"></i></span><div><strong>已安全绕开临时围挡</strong><span>系统自动调整路线 · 2 分钟前</span></div></div><div class="simple-item"><span class="place-icon"><i data-lucide="clock-3" aria-hidden="true"></i></span><div><strong>预计到达时间更新</strong><span>预计 10:08 到达 · 5 分钟前</span></div></div><div class="simple-item"><span class="place-icon"><i data-lucide="navigation" aria-hidden="true"></i></span><div><strong>行程已开始</strong><span>本人授权本次守护 · 9:42</span></div></div></div>
+        </div>
+        <div class="family-screen" data-family-screen="settings" hidden>
+          <div class="mobile-head"><div><p class="eyebrow">本人授权优先</p><h2 class="headline">授权设置</h2></div><span class="safe-pill"><i data-lucide="shield-check" aria-hidden="true"></i>仅本次行程</span></div>
+          <div class="family-setting"><div><strong>本次行程位置共享</strong><span>到达后自动停止，家属不可自行延长</span></div><span class="viz-badge">已授权</span></div>
+          <div class="family-setting"><div><strong>异常与绕行提醒</strong><span>仅在发生风险或路线明显延误时通知</span></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" checked aria-label="异常与绕行提醒"><span class="form-check-label">开启</span></label></div>
+          <div class="family-setting"><div><strong>到达提醒</strong><span>到达德基广场后发送一次通知</span></div><label class="form-check form-switch"><input class="form-check-input" type="checkbox" checked aria-label="到达提醒"><span class="form-check-label">开启</span></label></div>
+          <button type="button" class="btn btn-block mobile-primary" data-family-action="end-sharing">提前结束本次守护</button>
+        </div>
+        <div class="family-screen" data-family-screen="help" hidden>
+          <div class="mobile-head"><div><p class="eyebrow">守护而非监控</p><h2 class="headline">使用帮助</h2></div><i data-lucide="circle-help" aria-hidden="true"></i></div>
+          <div class="family-help-list"><div class="family-help-item"><strong>家属能看到什么？</strong><p>仅能看到本人主动授权行程的位置、预计到达时间和关键风险状态。</p></div><div class="family-help-item"><strong>出现异常怎么办？</strong><p>先联系本人；持续偏离路线或本人主动求助时，再联系紧急联系人。</p></div><div class="family-help-item"><strong>行程结束后还能查看位置吗？</strong><p>不能。到达目的地后位置共享自动关闭，需要下次重新授权。</p></div></div>
+          <button type="button" class="btn btn-primary btn-block mobile-primary" data-family-action="support">联系路见支持</button>
+        </div>
+        <div class="toast" id="family-toast" hidden aria-live="polite"></div>
+        <nav class="mobile-tabbar" aria-label="家属端主导航"><button type="button" class="is-active" data-family-tab="trip"><i data-lucide="route" aria-hidden="true"></i><span>行程</span></button><button type="button" data-family-tab="notifications"><i data-lucide="bell" aria-hidden="true"></i><span>通知</span></button><button type="button" data-family-tab="settings"><i data-lucide="settings" aria-hidden="true"></i><span>授权设置</span></button><button type="button" data-family-tab="help"><i data-lucide="circle-help" aria-hidden="true"></i><span>帮助</span></button></nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="prototype-view" data-view="governance" hidden>
+    <div class="device-hint"><i data-lucide="monitor-up" aria-hidden="true"></i><span>建议使用电脑全屏查看</span></div>
+    <div class="gov-shell">
+      <aside class="gov-sidebar">
+        <div class="brand gov-brand"><span class="brand-mark"><i data-lucide="route" aria-hidden="true"></i></span><div><strong>路见治理端</strong><div class="secondary">玄武区无障碍中心</div></div></div>
+        <nav class="gov-nav" aria-label="治理端导航"><button type="button" class="is-active" data-gov-nav="事件处置"><i data-lucide="inbox" aria-hidden="true"></i>事件处置</button><button type="button" data-gov-nav="区域态势"><i data-lucide="map" aria-hidden="true"></i>区域态势</button><button type="button" data-gov-nav="工单中心"><i data-lucide="clipboard-check" aria-hidden="true"></i>工单中心</button><button type="button" data-gov-nav="治理分析"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>治理分析</button></nav>
+      </aside>
+      <main class="gov-main">
+        <header class="gov-top"><div class="gov-title"><strong id="gov-page-title">事件处置工作台</strong><p id="gov-page-subtitle">优先处理高风险、临近超时的无障碍通行事件</p></div><div class="gov-actions"><button type="button" class="icon-button" data-gov-action="notifications" aria-label="消息通知"><i data-lucide="bell" aria-hidden="true"></i></button><span class="safe-pill"><i data-lucide="user-round" aria-hidden="true"></i>值班账号</span></div></header>
+        <div class="gov-content">
+          <section class="gov-page" data-gov-page="事件处置">
+          <div class="gov-stats"><div class="gov-stat"><span>待核实</span><strong>12</strong><div class="secondary">3 个高风险事件</div></div><div class="gov-stat"><span>处理中</span><strong>8</strong><div class="secondary">1 个将在 2 小时内超时</div></div><div class="gov-stat"><span>今日已关闭</span><strong>21</strong><div class="secondary">复核通过率 95%</div></div></div>
+          <div class="gov-workbench">
+            <section class="queue-panel"><div class="panel-head"><div><strong>待办队列</strong><p>按风险与时效排序</p></div><span class="safe-pill">共 20 件</span></div><div class="queue-list">
+              <button type="button" class="queue-row is-active" data-event="barrier"><span class="severity"></span><span class="queue-content"><strong>临时围挡占用盲道</strong><span class="secondary">中山东路 168 号 · AI 识别</span></span><span class="queue-time">8 分钟</span></button>
+              <button type="button" class="queue-row" data-event="bikes"><span class="severity medium"></span><span class="queue-content"><strong>共享单车密集占道</strong><span class="secondary">珠江路地铁站 1 号口</span></span><span class="queue-time">23 分钟</span></button>
+              <button type="button" class="queue-row" data-event="surface"><span class="severity medium"></span><span class="queue-content"><strong>盲道地砖破损</strong><span class="secondary">龙蟠中路与长江路交叉口</span></span><span class="queue-time">1 小时</span></button>
+              <button type="button" class="queue-row" data-event="vehicle"><span class="severity low"></span><span class="queue-content"><strong>机动车短时占用</strong><span class="secondary">北京东路社区入口</span></span><span class="queue-time">2 小时</span></button>
+            </div></section>
+            <section class="map-panel"><div class="panel-head"><div><strong>事件空间分布</strong><p>列表与地图双向联动</p></div><button type="button" class="btn" data-gov-action="map-overview">查看区域态势</button></div><div class="gov-map" role="img" aria-label="玄武区无障碍事件位置示意图"><div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><span class="map-label l1">珠江路</span><span class="map-label l2">中山东路</span><span class="map-pin p1"><span>1</span></span><span class="map-pin p2"><span>2</span></span><span class="map-pin p3"><span>3</span></span><span class="map-pin p4"><span>4</span></span></div><div class="map-legend"><span class="legend-item"><span class="severity"></span>高风险</span><span class="legend-item"><span class="severity medium"></span>中风险</span><span class="legend-item"><span class="severity low"></span>低风险</span></div></section>
+            <section class="detail-panel"><div class="panel-head"><div><strong id="event-title">临时围挡占用盲道</strong><p id="event-subtitle">事件 LJ-20260719-0841 · 中山东路 168 号</p></div><span class="safe-pill" id="event-risk"><i data-lucide="triangle-alert" aria-hidden="true"></i>高风险</span></div><div class="detail-body">
+              <div class="evidence"><div class="evidence-photo"><span><i data-lucide="image" aria-hidden="true"></i> 现场取证图</span></div><div class="evidence-list"><div class="evidence-item"><i data-lucide="scan-search" aria-hidden="true"></i><div><strong>AI 识别：临时围挡</strong><div class="secondary">置信度 94%，连续 3 帧确认</div></div></div><div class="evidence-item"><i data-lucide="map-pin" aria-hidden="true"></i><div><strong>占用盲道约 6.2 米</strong><div class="secondary">影响东西向连续通行</div></div></div><div class="evidence-item"><i data-lucide="history" aria-hidden="true"></i><div><strong>同点位近 30 天第 2 次</strong><div class="secondary">上次由施工单位现场整改</div></div></div></div></div>
+              <div class="work-order"><strong>处置进度</strong><div class="status-track" id="status-track"><span class="status-node is-done">发现</span><span class="status-node is-done">核实</span><span class="status-node">派单</span><span class="status-node">处理</span><span class="status-node">复核</span></div><div class="work-fields"><div class="field-box"><span>建议责任单位</span>玄武区城管局</div><div class="field-box"><span>处置时限</span>2 小时内</div><div class="field-box"><span>影响路线</span>3 条推荐路线</div><div class="field-box"><span>当前分流</span>已自动绕行 7 人次</div></div><div class="viz-row"><button type="button" class="btn" data-gov-action="false-positive">标记误报</button><button type="button" class="btn btn-primary" data-gov-action="create-order">确认并生成工单</button></div></div>
+            </div></section>
+          </div>
+          </section>
+
+          <section class="gov-page" data-gov-page="区域态势" hidden>
+            <div class="toolbar"><div><strong>玄武区风险态势</strong><div class="secondary">按点位、道路和责任网格查看当前风险</div></div><div class="toolbar-group"><button type="button" class="btn btn-primary" data-gov-action="region-today">今日</button><button type="button" class="btn" data-gov-action="region-week">近 7 天</button><button type="button" class="btn" data-gov-action="region-month">近 30 天</button></div></div>
+            <div class="page-grid"><section class="map-panel"><div class="panel-head"><div><strong>事件热区</strong><p>当前显示 43 个有效点位</p></div><button type="button" class="btn" data-gov-action="map-fullscreen">全屏查看</button></div><div class="gov-map region-map" role="img" aria-label="玄武区当前风险点位与热点分布示意"><div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><span class="map-label l1">珠江路</span><span class="map-label l2">中山东路</span><span class="map-pin p1"><span>9</span></span><span class="map-pin p2"><span>6</span></span><span class="map-pin p3"><span>3</span></span><span class="map-pin p4"><span>7</span></span></div><div class="map-legend"><span class="legend-item"><span class="severity"></span>高风险 8</span><span class="legend-item"><span class="severity medium"></span>中风险 21</span><span class="legend-item"><span class="severity low"></span>低风险 14</span></div></section><aside class="region-side"><div class="region-card"><strong>风险变化</strong><div class="gov-stat"><span>较昨日</span><strong>-18%</strong><div class="secondary">高风险点位减少 3 个</div></div></div><div class="region-card"><strong>高频道路</strong><div class="region-rank"><div class="rank-row"><span>中山东路</span><strong>9 件</strong></div><div class="rank-row"><span>珠江路</span><strong>7 件</strong></div><div class="rank-row"><span>龙蟠中路</span><strong>5 件</strong></div><div class="rank-row"><span>北京东路</span><strong>4 件</strong></div></div></div><div class="region-card"><strong>需重点关注</strong><p class="secondary">珠江路地铁站周边共享单车占道连续 3 天高发。</p><button type="button" class="btn btn-primary" data-gov-action="create-special-task">发起专项治理</button></div></aside></div>
+          </section>
+
+          <section class="gov-page" data-gov-page="工单中心" hidden>
+            <div class="toolbar"><div><strong>治理工单</strong><div class="secondary">跟踪派单、处理、复核和超时风险</div></div><div class="toolbar-group"><button type="button" class="btn btn-primary" data-gov-action="orders-all">全部 36</button><button type="button" class="btn" data-gov-action="orders-processing">处理中 8</button><button type="button" class="btn" data-gov-action="orders-overdue">临近超时 2</button><button type="button" class="btn" data-gov-action="orders-export">导出</button></div></div>
+            <div class="table-responsive order-table-wrap"><table class="table"><thead><tr><th>工单编号</th><th>问题类型</th><th>责任单位</th><th>当前状态</th><th>剩余时限</th><th>操作</th></tr></thead><tbody><tr><td>LJ-WO-031</td><td>临时围挡占道</td><td>玄武区城管局</td><td><span class="risk-tag">已派单</span></td><td>1 小时 42 分</td><td><button type="button" class="btn" data-gov-action="order-031">查看</button></td></tr><tr><td>LJ-WO-028</td><td>共享单车占道</td><td>单车运营企业</td><td><span class="risk-tag medium">处理中</span></td><td>36 分钟</td><td><button type="button" class="btn" data-gov-action="order-028">查看</button></td></tr><tr><td>LJ-WO-024</td><td>盲道地砖破损</td><td>市政养护中心</td><td><span class="risk-tag high">临近超时</span></td><td>18 分钟</td><td><button type="button" class="btn" data-gov-action="order-024">催办</button></td></tr><tr><td>LJ-WO-019</td><td>机动车占用</td><td>属地交警中队</td><td><span class="risk-tag">待复核</span></td><td>3 小时 15 分</td><td><button type="button" class="btn" data-gov-action="order-019">复核</button></td></tr></tbody></table></div>
+          </section>
+
+          <section class="gov-page" data-gov-page="治理分析" hidden>
+            <div class="toolbar"><div><strong>治理成效分析</strong><div class="secondary">关注处置效率与道路通行改善，不只统计事件数量</div></div><div class="toolbar-group"><button type="button" class="btn btn-primary" data-gov-action="analytics-week">近 7 天</button><button type="button" class="btn" data-gov-action="analytics-month">近 30 天</button><button type="button" class="btn" data-gov-action="analytics-report">生成报告</button></div></div>
+            <div class="gov-stats"><div class="gov-stat"><span>平均响应时间</span><strong>12 分钟</strong><div class="secondary">较上周缩短 4 分钟</div></div><div class="gov-stat"><span>按时关闭率</span><strong>92%</strong><div class="secondary">目标值 90%</div></div><div class="gov-stat"><span>重复发生率</span><strong>11%</strong><div class="secondary">较上周下降 3 个百分点</div></div></div>
+            <div class="analytics-grid"><section class="chart-panel"><strong>本周关闭工单</strong><div class="secondary">单位：件</div><div class="bar-chart" role="img" aria-label="周一至周日关闭工单数量柱状图"><div class="bar-column"><div class="bar" style="height:48%"></div><span>一</span></div><div class="bar-column"><div class="bar" style="height:65%"></div><span>二</span></div><div class="bar-column"><div class="bar" style="height:54%"></div><span>三</span></div><div class="bar-column"><div class="bar" style="height:78%"></div><span>四</span></div><div class="bar-column"><div class="bar" style="height:72%"></div><span>五</span></div><div class="bar-column"><div class="bar" style="height:88%"></div><span>六</span></div><div class="bar-column"><div class="bar" style="height:62%"></div><span>日</span></div></div></section><section class="chart-panel"><strong>高风险点位变化</strong><div class="secondary">近 7 天持续下降</div><div class="trend-chart"><svg viewBox="0 0 600 220" role="img" aria-label="高风险点位从 18 个下降到 8 个的趋势线"><polyline points="20,42 110,65 200,58 290,104 380,118 470,152 580,174"></polyline></svg></div></section></div>
+          </section>
+        </div><div class="toast" id="gov-toast" hidden aria-live="polite"></div>
+      </main>
+    </div>
+  </section>
+
+  <script>
+    (() => {
+      const root = document.getElementById('lujian-ui-prototype');
+      const views = root.querySelectorAll('[data-view]');
+      const viewButtons = root.querySelectorAll('[data-view-button]');
+      const userView = root.querySelector('[data-view="user"]');
+      const userSpeechStatus = root.querySelector('[data-user-speech-status]');
+      let userSpeechToken = 0;
+      let activeUserUtterance = null;
+      let activeUserAudio = null;
+      let speechStartTimer = null;
+      let preferredChineseVoice = null;
+      const prerecordedSpeech = {
+        '语音播报正常。路见将为每一个按钮和导航指令提供语音反馈。': 'assets/voice/voice-test.mp3?v=20260719-auto-fit-v3',
+        '使用帮助。可以语音查询低风险路线，开始导航后系统会持续扫描前方障碍。': 'assets/voice/help.mp3?v=20260719-auto-fit-v3',
+        '更换目的地。当前目的地是德基广场一期一号门。': 'assets/voice/destination.mp3?v=20260719-auto-fit-v3',
+        '开始语音查询。目的地德基广场一期一号门，正在比较三条路线的通行风险。': 'assets/voice/voice-query.mp3?v=20260719-auto-fit-v3',
+        '路线 A，预计二十四分钟，高风险，盲道占用率百分之七十八。该路线存在通行风险，不推荐选择该路线。': 'assets/voice/route-a.mp3?v=20260719-auto-fit-v3',
+        '路线 B，预计二十七分钟，低风险，盲道占用率百分之十八，系统推荐。': 'assets/voice/route-b.mp3?v=20260719-auto-fit-v3',
+        '路线 C，预计三十一分钟，中风险，盲道占用率百分之四十二。该路线存在通行风险，不推荐选择该路线。': 'assets/voice/route-c.mp3?v=20260719-auto-fit-v3',
+        '该路线存在通行风险，不推荐选择。请返回并选择低风险路线。': 'assets/voice/route-not-recommended.mp3?v=20260719-auto-fit-v3',
+        '返回出发前路线查询。': 'assets/voice/back-home.mp3?v=20260719-auto-fit-v3',
+        '重新输入目的地。当前目的地是德基广场一期一号门。': 'assets/voice/reinput.mp3?v=20260719-auto-fit-v3',
+        '最快路线，预计二十四分钟，存在两处施工，建议谨慎选择。': 'assets/voice/fastest.mp3?v=20260719-auto-fit-v3',
+        '最短路线，全程一点八公里，需要穿过共享单车密集路段。': 'assets/voice/shortest.mp3?v=20260719-auto-fit-v3',
+        '开始安全导航。AI 障碍识别已开启，将持续扫描前方十五米。': 'assets/voice/start-nav.mp3?v=20260719-auto-fit-v3',
+        '结束当前导航，返回路线确认。': 'assets/voice/end-nav.mp3?v=20260719-auto-fit-v3',
+        '警告，前方八米盲道被临时围挡占用。请立即停止前进。确认左侧安全后，缓慢向左移动一米。': 'assets/voice/alert.mp3?v=20260719-auto-fit-v3',
+        '第一步，请先停止前进。确认左侧安全后，缓慢向左移动一米。': 'assets/voice/alert-step-1.mp3?v=20260719-auto-fit-v3',
+        '第二步，保持当前方向，直行十二米。系统将继续扫描前方障碍。': 'assets/voice/alert-step-2.mp3?v=20260719-auto-fit-v3',
+        '第三步，继续直行。二十米后，按照提示向右移动，回归盲道。': 'assets/voice/alert-step-3.mp3?v=20260719-auto-fit-v3',
+        '已绕开障碍，继续导航。AI 障碍识别仍在运行。': 'assets/voice/alert-complete.mp3?v=20260719-auto-fit-v3',
+        '消息已全部标记为已读。': 'assets/voice/messages-read.mp3?v=20260719-auto-fit-v3',
+        '打开设置。': 'assets/voice/settings.mp3?v=20260719-auto-fit-v3',
+        '常用地点，已保存四个地点。': 'assets/voice/saved-places.mp3?v=20260719-auto-fit-v3',
+        '导航偏好，当前为安全优先和自动绕行。': 'assets/voice/preferences.mp3?v=20260719-auto-fit-v3',
+        '语音与震动设置，当前语速一点零倍，强震动。': 'assets/voice/voice-settings.mp3?v=20260719-auto-fit-v3',
+        '紧急联系人，当前已设置一人。': 'assets/voice/emergency.mp3?v=20260719-auto-fit-v3',
+        '已切换到路线查询。': 'assets/voice/tab-home.mp3?v=20260719-auto-fit-v3',
+        '已切换到实时导航，AI 正在持续扫描前方十五米。': 'assets/voice/tab-navigation.mp3?v=20260719-auto-fit-v3',
+        '已切换到消息中心。': 'assets/voice/tab-messages.mp3?v=20260719-auto-fit-v3',
+        '已切换到个人中心。': 'assets/voice/tab-profile.mp3?v=20260719-auto-fit-v3'
+      };
+      const userAudioPlayer = typeof window.Audio === 'undefined' ? null : new window.Audio();
+      if (userAudioPlayer) userAudioPlayer.preload = 'auto';
+      function refreshChineseVoice() {
+        if (!('speechSynthesis' in window)) return;
+        const voices = window.speechSynthesis.getVoices();
+        preferredChineseVoice = voices.find((voice) => /^zh[-_](CN|Hans)/i.test(voice.lang)) || voices.find((voice) => /^zh/i.test(voice.lang)) || null;
+      }
+      refreshChineseVoice();
+      if ('speechSynthesis' in window) {
+        if (typeof window.speechSynthesis.addEventListener === 'function') window.speechSynthesis.addEventListener('voiceschanged', refreshChineseVoice);
+        else window.speechSynthesis.onvoiceschanged = refreshChineseVoice;
+      }
+      function stopUserSpeech() {
+        userSpeechToken += 1;
+        if (speechStartTimer) window.clearTimeout(speechStartTimer);
+        speechStartTimer = null;
+        activeUserUtterance = null;
+        if (activeUserAudio) {
+          activeUserAudio.pause();
+          activeUserAudio.currentTime = 0;
+          activeUserAudio = null;
+        }
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      }
+      function speakWithSystemVoice(message, currentToken) {
+        if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance === 'undefined') {
+          userSpeechStatus.textContent = '当前浏览器不支持语音播报';
+          return;
+        }
+        const utterance = new window.SpeechSynthesisUtterance(message);
+        utterance.lang = 'zh-CN';
+        utterance.rate = 0.92;
+        utterance.volume = 1;
+        if (preferredChineseVoice) utterance.voice = preferredChineseVoice;
+        activeUserUtterance = utterance;
+        utterance.onstart = () => {
+          if (userSpeechToken === currentToken) userSpeechStatus.textContent = `正在播报：${message}`;
+        };
+        utterance.onend = () => {
+          if (userSpeechToken === currentToken && activeUserUtterance === utterance) {
+            activeUserUtterance = null;
+            userSpeechStatus.textContent = `已播报：${message}`;
+          }
+        };
+        utterance.onerror = () => {
+          if (userSpeechToken === currentToken) userSpeechStatus.textContent = '语音播报已被新操作打断';
+        };
+        const mobileDelay = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? 80 : 0;
+        speechStartTimer = window.setTimeout(() => {
+          if (userSpeechToken !== currentToken) return;
+          window.speechSynthesis.resume();
+          window.speechSynthesis.speak(utterance);
+        }, mobileDelay);
+      }
+      function speakUser(message) {
+        stopUserSpeech();
+        const currentToken = userSpeechToken;
+        const audioSource = prerecordedSpeech[message];
+        userSpeechStatus.textContent = `正在准备语音：${message}`;
+        if (!audioSource || !userAudioPlayer) {
+          speakWithSystemVoice(message, currentToken);
+          return;
+        }
+        const audio = userAudioPlayer;
+        audio.src = audioSource;
+        activeUserAudio = audio;
+        let fallbackStarted = false;
+        const startFallback = () => {
+          if (fallbackStarted || userSpeechToken !== currentToken) return;
+          fallbackStarted = true;
+          if (activeUserAudio === audio) activeUserAudio = null;
+          speakWithSystemVoice(message, currentToken);
+        };
+        audio.onplay = () => {
+          if (userSpeechToken === currentToken) userSpeechStatus.textContent = `正在播报：${message}`;
+        };
+        audio.onended = () => {
+          if (userSpeechToken === currentToken && activeUserAudio === audio) {
+            activeUserAudio = null;
+            userSpeechStatus.textContent = `已播报：${message}`;
+          }
+        };
+        audio.onerror = startFallback;
+        const playResult = audio.play();
+        if (playResult && typeof playResult.catch === 'function') playResult.catch(startFallback);
+      }
+      const userActionSpeech = {
+        help: '使用帮助。可以语音查询低风险路线，开始导航后系统会持续扫描前方障碍。',
+        'change-destination': '更换目的地。当前目的地是德基广场一期一号门。',
+        'read-all': '消息已全部标记为已读。',
+        settings: '打开设置。',
+        'saved-places': '常用地点，已保存四个地点。',
+        preferences: '导航偏好，当前为安全优先和自动绕行。',
+        'voice-settings': '语音与震动设置，当前语速一点零倍，强震动。',
+        emergency: '紧急联系人，当前已设置一人。'
+      };
+      const userTabSpeech = {
+        home: '已切换到路线查询。',
+        navigation: '已切换到实时导航，AI 正在持续扫描前方十五米。',
+        messages: '已切换到消息中心。',
+        profile: '已切换到个人中心。'
+      };
+      const routeSpeech = {
+        A: '路线 A，预计二十四分钟，高风险，盲道占用率百分之七十八。该路线存在通行风险，不推荐选择该路线。',
+        B: '路线 B，预计二十七分钟，低风险，盲道占用率百分之十八，系统推荐。',
+        C: '路线 C，预计三十一分钟，中风险，盲道占用率百分之四十二。该路线存在通行风险，不推荐选择该路线。'
+      };
+      function resolveUserSpeech(button) {
+        if (button.dataset.route) return routeSpeech[button.dataset.route];
+        if (button.id === 'voice-query-button') return '开始语音查询。目的地德基广场一期一号门，正在比较三条路线的通行风险。';
+        if (button.dataset.mobileAction) return userActionSpeech[button.dataset.mobileAction];
+        if (button.dataset.mobileTab) return userTabSpeech[button.dataset.mobileTab];
+        const label = (button.getAttribute('aria-label') || button.textContent).replace(/\s+/g, ' ').trim();
+        if (button.dataset.goScreen === 'home') return '返回出发前路线查询。';
+        if (button.dataset.goScreen === 'route' && label.includes('结束导航')) return '结束当前导航，返回路线确认。';
+        if (button.dataset.goScreen === 'navigation' && label.includes('开始安全导航')) return '开始安全导航。AI 障碍识别已开启，将持续扫描前方十五米。';
+        if (button.dataset.goScreen === 'alert') return '警告，前方八米盲道被临时围挡占用。请立即停止前进。确认左侧安全后，缓慢向左移动一米。';
+        if (label.includes('撤销绕行')) return '已撤销本次绕行，返回实时导航。';
+        if (label.includes('继续导航')) return '已确认安全绕行路线，继续导航。';
+        if (label.includes('最快路线')) return '最快路线，预计二十四分钟，存在两处施工，建议谨慎选择。';
+        if (label.includes('最短路线')) return '最短路线，全程一点八公里，需要穿过共享单车密集路段。';
+        if (label.includes('重新输入目的地')) return '重新输入目的地。当前目的地是德基广场一期一号门。';
+        return label || '按钮';
+      }
+      userView.querySelectorAll('button').forEach((button) => { if (!button.dataset.speech) button.dataset.speech = resolveUserSpeech(button); });
+      userView.addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (button && userView.contains(button)) speakUser(button.dataset.speech);
+      }, true);
+      const screenCopy = {
+        home: ['01 出发前路线查询', '保留原方案最易懂的结构：目的地、语音查询、播报结果和三条风险路线在同一屏完成。'],
+        route: ['02 推荐路线与原因', '默认只给一条安全优先路线，用时间差和避障数量解释为什么值得选择。'],
+        navigation: ['03 指令优先导航', '行进中让下一动作成为视觉主角，地图只承担定位和建立信任的辅助作用。'],
+        alert: ['04 高风险打断与分步绕行', '危险事件同时触发语音、震动和高对比视觉，先明确要求停下，再一次播报一个绕行动作。'],
+        messages: ['消息中心', '路线和障碍治理结果集中呈现，不加入公众上报入口。'],
+        profile: ['个人设置', '集中管理常用地点、导航偏好、语音震动和紧急联系人。']
+      };
+      const eventCopy = {
+        barrier: ['临时围挡占用盲道', '事件 LJ-20260719-0841 · 中山东路 168 号', '高风险'],
+        bikes: ['共享单车密集占道', '事件 LJ-20260719-0836 · 珠江路地铁站 1 号口', '中风险'],
+        surface: ['盲道地砖破损', '事件 LJ-20260719-0819 · 龙蟠中路与长江路交叉口', '中风险'],
+        vehicle: ['机动车短时占用', '事件 LJ-20260719-0754 · 北京东路社区入口', '低风险']
+      };
+      const routeCopy = {
+        A: ['路线 A · 高风险', '24 分钟', '2.0 公里 · 盲道占用率 78%', ['用时最短', '存在 2 处近期施工', '近期盲道占用频繁'], false],
+        B: ['路线 B · 安全优先', '27 分钟', '2.1 公里 · 比最快路线多 3 分钟', ['避开 2 处临时占道', '全程包含连续盲道', '仅需通过 1 个大型路口'], true],
+        C: ['路线 C · 中风险', '31 分钟', '2.4 公里 · 盲道占用率 42%', ['绕开施工路段', '共享单车占道概率中等', '需要通过 2 个大型路口'], false]
+      };
+      function switchView(view) {
+        if (view !== 'user') stopUserSpeech();
+        views.forEach((section) => { section.hidden = section.dataset.view !== view; });
+        viewButtons.forEach((button) => {
+          const active = button.dataset.viewButton === view;
+          button.classList.toggle('btn-primary', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+      }
+      window.addEventListener('beforeunload', stopUserSpeech);
+      viewButtons.forEach((button) => button.addEventListener('click', () => switchView(button.dataset.viewButton)));
+      const userTabbar = root.querySelector('[data-user-tabbar]');
+      const alertSteps = [
+        { title: '向左移动 1 米', detail: '请先确认左侧无车辆或台阶，再缓慢向左移动。', speech: '第一步，请先停止前进。确认左侧安全后，缓慢向左移动一米。' },
+        { title: '保持方向，直行 12 米', detail: '系统会持续扫描前方区域，如有新障碍将立即打断。', speech: '第二步，保持当前方向，直行十二米。系统将继续扫描前方障碍。' },
+        { title: '20 米后回归盲道', detail: '听到回归提示后向右移动，重新进入连续盲道。', speech: '第三步，继续直行。二十米后，按照提示向右移动，回归盲道。' }
+      ];
+      let alertStep = 0;
+      const alertReplayButton = root.querySelector('[data-alert-replay]');
+      const alertNextButton = root.querySelector('[data-alert-next]');
+      function renderAlertStep() {
+        const step = alertSteps[alertStep];
+        root.querySelector('#alert-step-index').textContent = `步骤 ${alertStep + 1} / ${alertSteps.length}`;
+        root.querySelector('#alert-step-title').textContent = step.title;
+        root.querySelector('#alert-step-detail').textContent = step.detail;
+        root.querySelectorAll('[data-alert-progress]').forEach((node) => node.classList.toggle('is-active', Number(node.dataset.alertProgress) <= alertStep));
+        alertReplayButton.dataset.speech = step.speech;
+        if (alertStep < alertSteps.length - 1) {
+          alertNextButton.textContent = '完成本步，继续';
+          alertNextButton.dataset.speech = alertSteps[alertStep + 1].speech;
+        } else {
+          alertNextButton.textContent = '我已绕开，继续导航';
+          alertNextButton.dataset.speech = '已绕开障碍，继续导航。AI 障碍识别仍在运行。';
+        }
+      }
+      function showScreen(screen) {
+        mobileToast.hidden = true;
+        if (mobileToastTimer) window.clearTimeout(mobileToastTimer);
+        if (screen === 'alert') {
+          alertStep = 0;
+          renderAlertStep();
+          if ('vibrate' in navigator) navigator.vibrate([260, 120, 260, 120, 520]);
+        }
+        root.querySelectorAll('[data-mobile-screen]').forEach((node) => { node.hidden = node.dataset.mobileScreen !== screen; });
+        root.querySelectorAll('[data-flow-step]').forEach((node) => node.classList.toggle('is-active', node.dataset.flowStep === screen));
+        root.querySelector('#flow-title').textContent = screenCopy[screen][0];
+        root.querySelector('#flow-description').textContent = screenCopy[screen][1];
+        const tabScreen = screen === 'route' ? 'home' : screen === 'alert' ? 'navigation' : screen;
+        root.querySelectorAll('[data-mobile-tab]').forEach((tab) => tab.classList.toggle('is-active', tab.dataset.mobileTab === tabScreen));
+        userTabbar.hidden = screen === 'alert';
+        if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
+      alertNextButton.addEventListener('click', () => {
+        if ('vibrate' in navigator) navigator.vibrate(120);
+        if (alertStep < alertSteps.length - 1) {
+          alertStep += 1;
+          renderAlertStep();
+        } else {
+          showScreen('navigation');
+        }
+      });
+      root.querySelectorAll('[data-route]').forEach((button) => button.addEventListener('click', () => {
+        const copy = routeCopy[button.dataset.route];
+        const isRecommended = copy[4];
+        root.querySelector('#selected-route-label').lastChild.textContent = copy[0];
+        root.querySelector('#selected-route-time').textContent = copy[1];
+        root.querySelector('#selected-route-meta').textContent = copy[2];
+        root.querySelector('#selected-route-reasons').innerHTML = copy[3].map((reason) => `<div class="reason"><i data-lucide="circle-check" aria-hidden="true"></i><span>${reason}</span></div>`).join('');
+        const routeAdvice = root.querySelector('#selected-route-advice');
+        routeAdvice.classList.toggle('is-warning', !isRecommended);
+        routeAdvice.querySelector('strong').textContent = isRecommended ? '推荐选择：当前路线风险最低。' : '不推荐选择：该路线存在通行风险，请选择低风险路线 B。';
+        const startNavigationButton = root.querySelector('#start-navigation-button');
+        startNavigationButton.textContent = isRecommended ? '开始安全导航' : '返回选择低风险路线';
+        startNavigationButton.dataset.goScreen = isRecommended ? 'navigation' : 'home';
+        startNavigationButton.dataset.speech = isRecommended ? '开始安全导航。AI 障碍识别已开启，将持续扫描前方十五米。' : '该路线存在通行风险，不推荐选择。请返回并选择低风险路线。';
+        if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }));
+      root.querySelectorAll('[data-go-screen]').forEach((button) => button.addEventListener('click', () => showScreen(button.dataset.goScreen)));
+      root.querySelectorAll('[data-mobile-tab]').forEach((button) => button.addEventListener('click', () => showScreen(button.dataset.mobileTab)));
+      const mobileToast = root.querySelector('#mobile-toast');
+      let mobileToastTimer = null;
+      function showMobileToast(message) {
+        if (mobileToastTimer) window.clearTimeout(mobileToastTimer);
+        mobileToast.textContent = message;
+        mobileToast.hidden = false;
+        mobileToastTimer = window.setTimeout(() => { mobileToast.hidden = true; }, 1800);
+      }
+      root.querySelector('#voice-query-button').addEventListener('click', () => {
+        root.querySelector('#voice-result p').textContent = '已识别：前往德基广场一期 1 号门。已找到 3 条路线，推荐路线 B，过去 7 天盲道占用最低。';
+        showMobileToast('语音查询完成，推荐路线 B');
+      });
+      const mobileActionCopy = {
+        help: '使用帮助已打开：点击语音按钮即可查询路线',
+        'change-destination': '目的地切换已打开',
+        'read-all': '消息已全部标记为已读',
+        settings: '设置页面已打开',
+        'saved-places': '常用地点管理已打开',
+        preferences: '导航偏好已打开',
+        'voice-settings': '语音与震动设置已打开',
+        emergency: '紧急联系人设置已打开'
+      };
+      root.querySelectorAll('[data-mobile-action]').forEach((button) => button.addEventListener('click', () => showMobileToast(mobileActionCopy[button.dataset.mobileAction])));
+      const familyToast = root.querySelector('#family-toast');
+      const familyActionCopy = {
+        voice: '语音留言录制已开始，不会打断本人当前导航',
+        call: '正在请求联系本人',
+        emergency: '异常求助确认已打开，将同时联系本人和紧急联系人',
+        'read-family-all': '3 条守护通知已全部标记为已读',
+        'end-sharing': '本次守护已提前结束，位置共享已关闭',
+        support: '正在连接路见支持'
+      };
+      function showFamilyScreen(screen) {
+        root.querySelectorAll('[data-family-screen]').forEach((node) => { node.hidden = node.dataset.familyScreen !== screen; });
+        root.querySelectorAll('[data-family-tab]').forEach((button) => button.classList.toggle('is-active', button.dataset.familyTab === screen));
+        familyToast.hidden = true;
+        if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
+      }
+      root.querySelectorAll('[data-family-tab]').forEach((button) => button.addEventListener('click', () => showFamilyScreen(button.dataset.familyTab)));
+      root.querySelectorAll('[data-family-action]').forEach((button) => button.addEventListener('click', () => {
+        familyToast.textContent = familyActionCopy[button.dataset.familyAction];
+        familyToast.hidden = false;
+        if (button.dataset.familyAction === 'end-sharing') {
+          button.textContent = '本次守护已结束';
+          button.disabled = true;
+        }
+      }));
+      root.querySelectorAll('[data-event]').forEach((row) => row.addEventListener('click', () => {
+        root.querySelectorAll('[data-event]').forEach((item) => item.classList.toggle('is-active', item === row));
+        const copy = eventCopy[row.dataset.event];
+        root.querySelector('#event-title').textContent = copy[0];
+        root.querySelector('#event-subtitle').textContent = copy[1];
+        root.querySelector('#event-risk').lastChild.textContent = copy[2];
+      }));
+      const govToast = root.querySelector('#gov-toast');
+      function showGovToast(message) {
+        govToast.textContent = message;
+        govToast.hidden = false;
+      }
+      const govCopy = {
+        '事件处置': ['事件处置工作台', '优先处理高风险、临近超时的无障碍通行事件'],
+        '区域态势': ['区域态势', '查看点位分布、风险聚集和责任区域'],
+        '工单中心': ['工单中心', '跟踪派单、处理和复核状态'],
+        '治理分析': ['治理分析', '复盘高频点位、处置效率和通行改善']
+      };
+      root.querySelectorAll('[data-gov-nav]').forEach((button) => button.addEventListener('click', () => {
+        root.querySelectorAll('[data-gov-nav]').forEach((item) => item.classList.toggle('is-active', item === button));
+        root.querySelectorAll('[data-gov-page]').forEach((page) => { page.hidden = page.dataset.govPage !== button.dataset.govNav; });
+        root.querySelector('#gov-page-title').textContent = govCopy[button.dataset.govNav][0];
+        root.querySelector('#gov-page-subtitle').textContent = govCopy[button.dataset.govNav][1];
+        showGovToast(`已切换到${button.dataset.govNav}`);
+      }));
+      root.querySelectorAll('[data-gov-action]').forEach((button) => button.addEventListener('click', () => {
+        const action = button.dataset.govAction;
+        if (action === 'create-order') {
+          root.querySelectorAll('#status-track .status-node')[2].classList.add('is-done');
+          button.textContent = '工单已生成';
+          showGovToast('工单 LJ-WO-20260719-031 已生成并派发至玄武区城管局');
+        } else if (action === 'false-positive') {
+          showGovToast('已标记为待复核误报，当前事件不会进入派单');
+        } else if (action === 'map-overview') {
+          root.querySelector('[data-gov-nav="区域态势"]').click();
+        } else if (action === 'notifications') {
+          showGovToast('暂无未读紧急通知');
+        } else {
+          const label = button.textContent.trim();
+          showGovToast(`${label}操作已执行`);
+        }
+      }));
+    })();
+  </script>
+</div>
+
+<script src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script>
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script>
+(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+
+<script data-lujian-auto-fit-script="true">
+(() => {
+  const root = document.getElementById('lujian-ui-prototype');
+  if (!root) return;
+  let fitFrame = 0;
+
+  function activeView() {
+    return root.querySelector('.prototype-view:not([hidden])');
+  }
+
+  function fitPhone(view) {
+    const stage = view.querySelector('.user-stage');
+    const phone = view.querySelector('.phone');
+    if (!stage || !phone) return;
+    phone.style.transform = 'none';
+    const availableHeight = Math.max(1, stage.clientHeight - 2);
+    const availableWidth = Math.max(1, stage.clientWidth - 2);
+    const naturalHeight = Math.max(phone.scrollHeight, phone.getBoundingClientRect().height);
+    const naturalWidth = Math.max(phone.scrollWidth, phone.getBoundingClientRect().width);
+    const scale = Math.min(1, availableHeight / naturalHeight, availableWidth / naturalWidth);
+    phone.style.transform = `scale(${Math.max(0.1, scale).toFixed(4)})`;
+  }
+
+  function fitGovernance(view) {
+    const shell = view.querySelector('.gov-shell');
+    if (!shell) return;
+    shell.style.transform = 'none';
+    const availableHeight = Math.max(1, view.clientHeight - 2);
+    const availableWidth = Math.max(1, view.clientWidth - 2);
+    const naturalHeight = Math.max(shell.scrollHeight, shell.getBoundingClientRect().height);
+    const naturalWidth = Math.max(shell.scrollWidth, shell.getBoundingClientRect().width);
+    const scale = Math.min(1, availableHeight / naturalHeight, availableWidth / naturalWidth);
+    shell.style.transform = `scale(${Math.max(0.1, scale).toFixed(4)})`;
+  }
+
+  function fitActiveView() {
+    fitFrame = 0;
+    const view = activeView();
+    if (!view) return;
+    if (view.dataset.view === 'governance') fitGovernance(view);
+    else fitPhone(view);
+  }
+
+  function scheduleFit() {
+    if (fitFrame) cancelAnimationFrame(fitFrame);
+    fitFrame = requestAnimationFrame(() => requestAnimationFrame(fitActiveView));
+  }
+
+  root.addEventListener('click', scheduleFit);
+  window.addEventListener('resize', scheduleFit);
+  window.addEventListener('orientationchange', scheduleFit);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', scheduleFit);
+  window.addEventListener('load', scheduleFit);
+  scheduleFit();
+  window.setTimeout(scheduleFit, 350);
+})();
+</script>
+</body>
+</html>
