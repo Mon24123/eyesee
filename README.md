@@ -1,26 +1,24 @@
-# 路见｜AI 无障碍通道双向守护
+# EyeSee 路见 · AI 无障碍出行助手
 
-一个用于演示无障碍通道 AI 双向守护系统的静态网站。
+面向视障人群的无障碍出行辅助系统交互原型。页面内的盲道与障碍物检测由浏览器端 ONNX 模型实时推理完成，不依赖服务器。
+
+在线地址：https://mon24123.github.io/eyesee/
 
 ## 文件结构
 
 ```
-lujian-demo/
-├── index.html          # 主页面
-├── favicon.svg         # 网站图标
-├── og.png             # 社交媒体分享图片
-└── assets/            # 静态资源目录
-    ├── index-DHezgImu.css
-    ├── index-BSzK71ck.js
-    ├── layout-segment-context-CvOzlKHe.js
-    ├── rolldown-runtime-S-ySWqyJ.js
-    ├── framework-CXnKph_e.js
-    └── RouteJianDemo-Ms2aTLlH.js
+eyesee/
+├── index.html                        主页面（交互原型 + 端侧推理）
+├── nav-ai.mjs                        浏览器端 AI 检测模块（ONNX Runtime Web）
+├── models/
+│   ├── blindpath_320.onnx            盲道检测模型
+│   └── obstacle_320.onnx             障碍物检测模型
+├── lujian-blindpath-detect-demo.mp4  检测演示视频
+├── assets/                           语音提示等静态资源
+└── archive/                          历史版本存档
 ```
 
-## 本地测试
-
-使用 Python 启动本地服务器：
+## 本地预览
 
 ```bash
 python3 -m http.server 8000
@@ -28,37 +26,8 @@ python3 -m http.server 8000
 
 然后访问 http://localhost:8000
 
-## 部署到国内平台
+## 说明
 
-### 方案一：腾讯云 COS + CDN
-
-1. 登录腾讯云控制台
-2. 创建一个公有读的存储桶
-3. 上传所有文件
-4. 开启静态网站托管
-5. 配置 CDN 加速
-
-### 方案二：阿里云 OSS
-
-1. 登录阿里云控制台
-2. 创建 Bucket，设置为公共读
-3. 上传所有文件
-4. 开启静态网站托管
-
-### 方案三：GitHub Pages + 国内镜像
-
-1. 将文件推送到 GitHub
-2. 启用 GitHub Pages
-3. 使用国内镜像服务（如 Gitee Pages）
-
-### 方案四：免费国内托管
-
-- Vercel 国内镜像
-- Netlify 国内镜像
-- 自己的服务器（Nginx/Apache）
-
-## 注意事项
-
-- 所有资源路径已改为相对路径，无需修改
-- 已移除 Cloudflare 机器人检测代码
-- 支持本地和云端直接部署
+- 首次访问需下载约 22MB 模型，加载期间状态栏会显示进度提示。
+- ONNX Runtime 运行时首次需联网加载。
+- 演示视频仅作为摄像头输入源，画面上的检测框由模型实时推理产生，页面已标注「演示视频 · 技术示意」。
