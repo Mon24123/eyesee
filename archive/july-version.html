@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://registry.npmmirror.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://registry.npmmirror.com; img-src blob: data: https://cdnjs.cloudflare.com https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://registry.npmmirror.com; font-src blob: data: https://cdnjs.cloudflare.com https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://registry.npmmirror.com; media-src 'self' blob: data: https://cdnjs.cloudflare.com https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://registry.npmmirror.com; worker-src 'self' blob: https://registry.npmmirror.com; connect-src 'self' blob: data: http://127.0.0.1:5050 http://localhost:5050 https://registry.npmmirror.com; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src 'self' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Lujian Ui Prototype</title>
 <style>:root {
   color-scheme: light dark;
@@ -803,7 +803,7 @@ html>body{padding:0}</style>
   <meta name="lujian-build" content="2026-07-19-auto-fit-v3">
 <style data-lujian-auto-fit="true">
 html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: none; }
-#lujian-ui-prototype { width: 100%; height: 100dvh; padding: 7px 9px; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
+#lujian-ui-prototype { width: 100%; height: 100dvh; padding: 7px 9px; display: flex; flex-direction: column; overflow: hidden; }
 #lujian-ui-prototype .prototype-switch { flex: 0 0 auto; gap: 6px; margin: 0 0 6px; }
 #lujian-ui-prototype .prototype-view { flex: 1 1 auto; min-height: 0; overflow: hidden; }
 #lujian-ui-prototype .device-hint { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -999,6 +999,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
     #lujian-ui-prototype .map-label.l2 { right: 8%; bottom: 14%; }
     #lujian-ui-prototype .nav-footer { display: grid; gap: 10px; margin-top: 14px; }
     #lujian-ui-prototype .nav-status { padding: 12px 14px; background: var(--muted); border-radius: 13px; }
+    #lujian-ui-prototype .demo-obstacle { width: 100%; }
     #lujian-ui-prototype .alert-screen { display: grid; grid-template-rows: auto 1fr auto; min-height: 570px; background: var(--foreground); color: var(--background); }
     #lujian-ui-prototype .alert-screen .secondary { color: color-mix(in srgb, var(--background) 72%, transparent); }
     #lujian-ui-prototype .alert-screen .safe-pill { color: var(--background); background: color-mix(in srgb, var(--background) 15%, transparent); }
@@ -1097,146 +1098,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
       #lujian-ui-prototype .gov-stats, #lujian-ui-prototype .spec-list { grid-template-columns: 1fr; }
       #lujian-ui-prototype .gov-nav { grid-template-columns: repeat(2, 1fr); }
       #lujian-ui-prototype .gov-top { align-items: flex-start; }
-      /* 治理端手机端：取消缩放、改为可上下滑动、顶部显示「建议使用电脑全屏查看」 */
-      #lujian-ui-prototype [data-view="governance"] { overflow: hidden auto; -webkit-overflow-scrolling: touch; min-width: 0; width: 100vw; max-width: 100vw; }
-      #lujian-ui-prototype [data-view="governance"] .gov-shell { transform: none !important; min-height: 0; height: auto; max-width: 100%; width: 100%; grid-template-columns: minmax(0, 1fr); }
-      #lujian-ui-prototype [data-view="governance"] .gov-main { min-width: 0; width: 100%; }
-      #lujian-ui-prototype [data-view="governance"] .order-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      #lujian-ui-prototype [data-view="governance"] .device-hint {
-        position: static; width: auto; height: auto; margin: 0; overflow: visible;
-        clip-path: none; white-space: normal;
-        display: flex; align-items: center; gap: 6px;
-        padding: 8px 12px; margin-bottom: 10px;
-        background: color-mix(in srgb, var(--warning, #f59e0b) 16%, var(--card, #fff));
-        color: var(--foreground, #111); font-size: 13px; border-radius: 10px;
-      }
     }
-    /* ===== UI 重构补丁 v14: AI 价值可视化 ===== */
-    /* ❶ 顶卡智能体 banner */
-    #lujian-ui-prototype .hero-banner {
-      position: relative; display: flex; align-items: center; gap: 14px;
-      padding: 14px 16px; margin: -6px -8px 16px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #3b82f6 0%, #6366f1 60%, #8b5cf6 100%);
-      color: #fff;
-      box-shadow: 0 6px 20px rgba(99,102,241,.25);
-      overflow: hidden;
-    }
-    #lujian-ui-prototype .hero-banner::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 92% -30%, rgba(255,255,255,.22), transparent 55%);
-      pointer-events: none;
-    }
-    #lujian-ui-prototype .hero-logo {
-      flex: 0 0 auto; width: 40px; height: 40px;
-      display: grid; place-items: center;
-      border-radius: 11px;
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.32);
-      animation: hero-pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes hero-pulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,.45); }
-      50% { box-shadow: 0 0 0 9px rgba(255,255,255,0); }
-    }
-    #lujian-ui-prototype .hero-content { flex: 1; min-width: 0; }
-    #lujian-ui-prototype .hero-title {
-      font-size: 16.5px; font-weight: 700; letter-spacing: -.3px; line-height: 1.2;
-    }
-    #lujian-ui-prototype .hero-tagline {
-      font-size: 12.5px; opacity: .9; margin-top: 4px; line-height: 1.4;
-    }
-    #lujian-ui-prototype .hero-actions { display: flex; gap: 6px; flex-shrink: 0; }
-    #lujian-ui-prototype .hero-actions .icon-button {
-      background: rgba(255,255,255,.16);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.3);
-    }
-    /* ❹ 路线 A/B/C 视觉差异化（高/推荐/中）*/
-    #lujian-ui-prototype .route-card.tier-high {
-      background: linear-gradient(135deg, rgba(239,68,68,.10), rgba(239,68,68,.04));
-      border: 1.5px solid rgba(239,68,68,.45);
-      border-left: 4px solid #ef4444;
-    }
-    #lujian-ui-prototype .route-card.tier-high .route-letter {
-      background: rgba(239,68,68,.18); color: #b91c1c; font-weight: 800;
-    }
-    #lujian-ui-prototype .route-card.tier-recommended {
-      background: linear-gradient(135deg, rgba(59,130,246,.13), rgba(99,102,241,.06));
-      border: 1.5px solid rgba(59,130,246,.55);
-      border-left: 4px solid #3b82f6;
-      position: relative;
-    }
-    #lujian-ui-prototype .route-card.tier-recommended .route-letter {
-      background: rgba(59,130,246,.20); color: #1d4ed8; font-weight: 800;
-    }
-    #lujian-ui-prototype .route-card.tier-recommended::after {
-      content: '推荐 ✓';
-      position: absolute; top: -8px; right: 10px;
-      background: #3b82f6; color: #fff;
-      font-size: 10.5px; padding: 3px 8px;
-      border-radius: 10px; font-weight: 700; letter-spacing: .5px;
-      box-shadow: 0 2px 6px rgba(59,130,246,.35);
-    }
-    #lujian-ui-prototype .route-card.tier-medium {
-      background: linear-gradient(135deg, rgba(245,158,11,.09), rgba(245,158,11,.03));
-      border: 1.5px solid rgba(245,158,11,.4);
-      border-left: 4px solid #f59e0b;
-    }
-    #lujian-ui-prototype .route-card.tier-medium .route-letter {
-      background: rgba(245,158,11,.18); color: #b45309; font-weight: 800;
-    }
-    /* ❻ 实时导航距离进度面板 */
-    #lujian-ui-prototype .nav-progress {
-      display: flex; flex-direction: column; gap: 7px;
-      padding: 12px 14px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(59,130,246,.07), rgba(99,102,241,.03));
-      border: 1px solid rgba(59,130,246,.20);
-      margin-bottom: 10px;
-    }
-    #lujian-ui-prototype .nav-next-step {
-      display: flex; align-items: center; gap: 7px;
-      font-size: 13.5px; font-weight: 600;
-    }
-    #lujian-ui-prototype .nav-next-step .nav-next-icon {
-      flex: 0 0 auto; width: 28px; height: 28px;
-      display: grid; place-items: center; border-radius: 50%;
-      background: #3b82f6; color: #fff;
-    }
-    #lujian-ui-prototype .nav-progress-bar {
-      height: 6px; border-radius: 3px;
-      background: rgba(59,130,246,.15);
-      overflow: hidden; position: relative;
-    }
-    #lujian-ui-prototype .nav-progress-fill {
-      position: absolute; top: 0; left: 0; bottom: 0;
-      width: 58%;
-      background: linear-gradient(90deg, #3b82f6, #6366f1);
-      border-radius: 3px;
-      transition: width .5s ease;
-    }
-    #lujian-ui-prototype .nav-progress-meta {
-      display: flex; justify-content: space-between;
-      font-size: 11.5px; opacity: .75;
-    }
-    /* v14 补充：导航屏操作（一键上报 / 演示预警） */
-    #lujian-ui-prototype .nav-actions {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px;
-    }
-    #lujian-ui-prototype .btn-report {
-      background: linear-gradient(135deg, #ef4444, #f97316); color: #fff; border: none;
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      min-height: 46px; font-weight: 700; font-size: 13px;
-    }
-    #lujian-ui-prototype .btn-report i { width: 17px; height: 17px; }
-    #lujian-ui-prototype .btn-demo-alert {
-      background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; border: none;
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      min-height: 46px; font-weight: 700; font-size: 13px;
-    }
-    #lujian-ui-prototype .btn-demo-alert i { width: 17px; height: 17px; }
-1   </style>
+  </style>
 
   <div class="prototype-switch" role="group" aria-label="切换产品端">
     <button type="button" class="btn btn-primary" data-view-button="user" aria-pressed="true">出行端</button>
@@ -1251,25 +1114,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         <div class="phone-status"><span>9:41</span><span class="phone-status-group"><i data-lucide="signal" aria-hidden="true"></i><i data-lucide="wifi" aria-hidden="true"></i><i data-lucide="battery-full" aria-hidden="true"></i></span></div>
 
         <div class="mobile-screen" data-mobile-screen="home">
-          <div class="hero-banner" role="banner" aria-label="路见 AI 出行助手">
-            <span class="hero-logo" aria-hidden="true"><i data-lucide="ear"></i></span>
-            <div class="hero-content">
-              <div class="hero-title">路见 · AI 出行助手</div>
-              <div class="hero-tagline">让每段路都被看见</div>
-            </div>
-            <div class="hero-actions">
-              <button type="button" class="icon-button" data-voice-test data-speech="语音播报正常。路见将为每一个按钮和导航指令提供语音反馈。" aria-label="测试语音播报"><i data-lucide="volume-2" aria-hidden="true"></i></button>
-              <button type="button" class="icon-button" data-mobile-action="help" aria-label="使用帮助"><i data-lucide="circle-help" aria-hidden="true"></i></button>
-            </div>
-          </div>
+          <div class="mobile-head"><div class="brand"><span class="brand-mark"><i data-lucide="route" aria-hidden="true"></i></span><div><strong>出发前路线查询</strong><div class="secondary">按道路风险规划更稳妥的路线</div></div></div><div class="inline"><button type="button" class="icon-button" data-voice-test data-speech="语音播报正常。路见将为每一个按钮和导航指令提供语音反馈。" aria-label="测试语音播报"><i data-lucide="volume-2" aria-hidden="true"></i></button><button type="button" class="icon-button" data-mobile-action="help" aria-label="使用帮助"><i data-lucide="circle-help" aria-hidden="true"></i></button></div></div>
           <div class="destination-card"><span class="place-icon"><i data-lucide="map-pin" aria-hidden="true"></i></span><div><span class="secondary">目的地</span><strong>德基广场一期 1 号门</strong><span class="secondary">全程约 2.1 公里</span></div><button type="button" class="btn" data-mobile-action="change-destination">更换</button></div>
           <button type="button" class="voice-query" id="voice-query-button"><span class="hero-mic"><i data-lucide="mic" aria-hidden="true"></i></span><span><strong>语音查询低风险路线</strong><span>点击说话，快速获得路线建议</span></span></button>
           <div class="voice-result" id="voice-result"><div class="inline"><i data-lucide="volume-2" aria-hidden="true"></i><strong>语音播报结果</strong></div><p>已找到 3 条路线。推荐路线 B，过去 7 天盲道占用最低，预计多走 3 分钟。</p></div>
           <div class="section-label"><strong>路线风险对比</strong><span class="secondary">近 7 天数据</span></div>
           <div class="route-list">
-            <button type="button" class="route-card tier-high" data-go-screen="route" data-route="A"><span class="route-letter">A</span><span class="route-meta"><strong>路线 A · 24 分钟</strong><span class="secondary">2.0 公里 · 占用率 78%</span></span><span class="risk-tag high">高风险</span></button>
-            <button type="button" class="route-card is-recommended tier-recommended" data-go-screen="route" data-route="B"><span class="route-letter">B</span><span class="route-meta"><strong>路线 B · 27 分钟</strong><span class="secondary">2.1 公里 · 占用率 18%</span></span><span class="risk-tag">推荐 · 低风险</span></button>
-            <button type="button" class="route-card tier-medium" data-go-screen="route" data-route="C"><span class="route-letter">C</span><span class="route-meta"><strong>路线 C · 31 分钟</strong><span class="secondary">2.4 公里 · 占用率 42%</span></span><span class="risk-tag medium">中风险</span></button>
+            <button type="button" class="route-card" data-go-screen="route" data-route="A"><span class="route-letter">A</span><span class="route-meta"><strong>路线 A · 24 分钟</strong><span class="secondary">2.0 公里 · 占用率 78%</span></span><span class="risk-tag high">高风险</span></button>
+            <button type="button" class="route-card is-recommended" data-go-screen="route" data-route="B"><span class="route-letter">B</span><span class="route-meta"><strong>路线 B · 27 分钟</strong><span class="secondary">2.1 公里 · 占用率 18%</span></span><span class="risk-tag">推荐 · 低风险</span></button>
+            <button type="button" class="route-card" data-go-screen="route" data-route="C"><span class="route-letter">C</span><span class="route-meta"><strong>路线 C · 31 分钟</strong><span class="secondary">2.4 公里 · 占用率 42%</span></span><span class="risk-tag medium">中风险</span></button>
           </div>
         </div>
 
@@ -1287,20 +1140,13 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         </div>
 
         <div class="mobile-screen" data-mobile-screen="navigation" hidden>
-          <div class="mobile-head"><button type="button" class="screen-back" data-go-screen="route"><i data-lucide="x" aria-hidden="true"></i>结束导航</button><span class="safe-pill" style="font-size:22px;padding:9px 14px;font-weight:700"><i data-lucide="volume-2" aria-hidden="true"></i>语音播报</span></div>
-          <div class="scan-live"><span class="scan-live-dot"></span><div><strong>AI 障碍识别演示中</strong><span>正在播放盲道检测演示（技术示意）</span></div></div>
-          <div class="nav-progress" aria-label="导航进度">
-            <div class="nav-next-step"><span class="nav-next-icon"><i data-lucide="turn-right" aria-hidden="true"></i></span><span>右转进入洪武路 · 80 米后</span></div>
-            <div class="nav-progress-bar"><div class="nav-progress-fill"></div></div>
-            <div class="nav-progress-meta"><span>已走 1.2 公里</span><span>剩余 0.9 公里 · 约 9 分钟</span></div>
+          <div class="mobile-head"><button type="button" class="screen-back" data-go-screen="route"><i data-lucide="x" aria-hidden="true"></i>结束导航</button><span class="safe-pill"><i data-lucide="volume-2" aria-hidden="true"></i>语音开启</span></div>
+          <div class="nav-instruction"><span class="turn-icon"><i data-lucide="corner-up-right" aria-hidden="true"></i></span><div><strong>前方 20 米右转</strong><p>进入中山东路辅路</p></div></div>
+          <div class="scan-live"><span class="scan-live-dot"></span><div><strong>AI 障碍识别运行中</strong><span>持续扫描前方 15 米盲道与通行区域</span></div></div>
+          <div class="route-map" role="img" aria-label="前往德基广场的导航路线，AI 正在扫描前方十五米障碍物">
+            <div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><div class="route-line"></div><span class="route-dot start"></span><span class="route-dot end"></span><span class="scan-zone"></span><span class="map-label l1">珠江路</span><span class="map-label l2">中山东路</span><span class="map-label scan-label">扫描前方 15 米</span>
           </div>
-          <div class="route-map" id="nav-camera-stage" role="img" aria-label="路见 AI 摄像头实时画面，正在播放盲道障碍物检测演示视频（技术示意）">
-            <video id="nav-cam-video" src="lujian-blindpath-detect-demo.mp4" autoplay playsinline muted loop style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;background:#111"></video>
-            <canvas id="nav-cam-hud" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:2;display:none"></canvas>
-            <canvas id="nav-cam-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:3;display:none"></canvas>
-            <div id="nav-cam-status" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:6px;text-align:center;color:#fff;background:rgba(0,0,0,.6);z-index:4;padding:14px;font-size:13px"></div>
-          </div>
-          <div class="nav-footer"><div class="nav-status" id="nav-detect-status"><strong>正在播放演示视频…</strong><div class="secondary" id="nav-detect-sub">演示模式 · 技术示意</div><div class="secondary" id="nav-bp-sub" style="opacity:.7">演示视频 · 技术示意</div></div><div class="nav-actions"><button type="button" class="btn btn-report" data-report-barrier data-speech="一键上报障碍。请告诉我障碍的位置和类型，城市治理端会立刻收到工单。"><i data-lucide="upload-cloud" aria-hidden="true"></i>一键上报障碍</button><button type="button" class="btn btn-demo-alert" data-demo-alert data-speech="演示：模拟前方八米有高风险障碍，系统将立即弹出分步绕行指引。"><i data-lucide="alert-triangle" aria-hidden="true"></i>演示：模拟预警</button></div></div>
+          <div class="nav-footer"><div class="nav-status"><strong>当前未发现障碍</strong><div class="secondary">最近一次识别 0.8 秒前 · 持续扫描中</div></div><button type="button" class="btn btn-block demo-obstacle" data-go-screen="alert" aria-label="演示扫描到前方障碍物"><i data-lucide="triangle-alert" aria-hidden="true"></i> 演示：识别到前方障碍</button></div>
         </div>
 
         <div class="mobile-screen alert-screen" data-mobile-screen="alert" hidden>
@@ -1341,48 +1187,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         <div class="family-screen" data-family-screen="trip">
           <div class="mobile-head"><div class="brand"><span class="brand-mark"><i data-lucide="heart-handshake" aria-hidden="true"></i></span><div><strong>同行守护</strong><div class="secondary">仅展示本人授权的信息</div></div></div><button type="button" class="icon-button" data-family-tab="settings" aria-label="授权与隐私"><i data-lucide="shield-check" aria-hidden="true"></i></button></div>
           <div class="family-hero"><div class="family-hero-top"><div><span class="permission-pill"><i data-lucide="key-round" aria-hidden="true"></i>可选守护 · 本次行程已授权</span><h2>正在前往德基广场</h2><p>预计 10:08 到达 · 剩余 1.2 公里</p></div><i data-lucide="navigation" aria-hidden="true"></i></div><div class="trip-progress"><span>出发</span><div class="trip-progress-line"><span></span></div><span>到达</span></div></div>
-          <div class="route-map family-map" role="img" aria-label="当前授权行程位置与路线·珠江路→中山东路→邓府巷→德基广场·剩余1.2公里">
-            <svg viewBox="0 0 320 160" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" style="display:block" aria-hidden="true">
-              <rect width="320" height="160" fill="#eef2f6"/>
-              <rect x="6" y="6" width="62" height="26" fill="#dfe5ec" rx="2"/>
-              <rect x="84" y="6" width="62" height="26" fill="#dfe5ec" rx="2"/>
-              <rect x="162" y="6" width="62" height="26" fill="#dfe5ec" rx="2"/>
-              <rect x="240" y="6" width="74" height="26" fill="#dfe5ec" rx="2"/>
-              <rect x="6" y="50" width="62" height="42" fill="#dfe5ec" rx="2"/>
-              <rect x="84" y="50" width="62" height="42" fill="#dfe5ec" rx="2"/>
-              <rect x="162" y="50" width="62" height="42" fill="#dfe5ec" rx="2"/>
-              <rect x="240" y="50" width="74" height="42" fill="#dfe5ec" rx="2"/>
-              <rect x="6" y="110" width="62" height="44" fill="#dfe5ec" rx="2"/>
-              <rect x="84" y="110" width="62" height="44" fill="#dfe5ec" rx="2"/>
-              <rect x="162" y="110" width="62" height="44" fill="#dfe5ec" rx="2"/>
-              <rect x="240" y="110" width="74" height="44" fill="#dfe5ec" rx="2"/>
-              <rect x="0" y="36" width="320" height="10" fill="#ffffff"/>
-              <rect x="0" y="96" width="320" height="10" fill="#ffffff"/>
-              <rect x="72" y="0" width="10" height="160" fill="#ffffff"/>
-              <rect x="150" y="0" width="10" height="160" fill="#ffffff"/>
-              <rect x="228" y="0" width="10" height="160" fill="#ffffff"/>
-              <text x="118" y="33" font-size="8.5" fill="#475569" text-anchor="middle" font-weight="600">珠江路</text>
-              <text x="276" y="94" font-size="8.5" fill="#475569" text-anchor="middle" font-weight="600">中山东路</text>
-              <text x="77" y="80" font-size="8" fill="#475569" text-anchor="middle" font-weight="600" transform="rotate(-90,77,80)">洪武路</text>
-              <text x="233" y="80" font-size="8" fill="#475569" text-anchor="middle" font-weight="600" transform="rotate(-90,233,80)">邓府巷</text>
-              <path d="M 77 140 L 77 101 L 233 101 L 233 18" stroke="#ffffff" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M 77 140 L 77 101 L 233 101 L 233 18" stroke="#2563eb" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="77" cy="140" r="8" fill="#2563eb" stroke="#ffffff" stroke-width="3"/>
-              <circle cx="77" cy="140" r="3" fill="#ffffff"/>
-              <rect x="30" y="150" width="60" height="12" rx="2" fill="#ffffff" stroke="#2563eb" stroke-width="1"/>
-              <text x="60" y="159" font-size="8.5" fill="#1e293b" text-anchor="middle" font-weight="700">当前位置</text>
-              <path d="M 233 18 L 227 30 L 239 30 Z" fill="#ef4444" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round"/>
-              <rect x="208" y="0" width="50" height="12" rx="2" fill="#ffffff" stroke="#ef4444" stroke-width="1"/>
-              <text x="233" y="9" font-size="8.5" fill="#1e293b" text-anchor="middle" font-weight="700">德基广场</text>
-              <rect x="118" y="74" width="68" height="16" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.2"/>
-              <text x="152" y="85" font-size="9" fill="#2563eb" text-anchor="middle" font-weight="700">1.2km · 12分钟</text>
-              <g transform="translate(304,148)">
-                <circle cx="0" cy="0" r="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-                <path d="M 0 -5 L -3.5 4 L 0 1.5 L 3.5 4 Z" fill="#475569"/>
-                <text x="0" y="-11" font-size="6.5" fill="#475569" text-anchor="middle" font-weight="700">N</text>
-              </g>
-            </svg>
-          </div>
+          <div class="route-map family-map" role="img" aria-label="当前授权行程的位置与路线示意"><div class="road r1"></div><div class="road r2"></div><div class="road r3"></div><div class="route-line"></div><span class="route-dot start"></span><span class="route-dot end"></span><span class="map-label l1">当前位置</span><span class="map-label l2">德基广场</span></div>
           <div class="family-actions"><button type="button" class="family-action" data-family-action="voice"><i data-lucide="message-circle-more" aria-hidden="true"></i><span>语音留言</span></button><button type="button" class="family-action" data-family-action="call"><i data-lucide="phone" aria-hidden="true"></i><span>联系本人</span></button><button type="button" class="family-action is-emergency" data-family-action="emergency"><i data-lucide="siren" aria-hidden="true"></i><span>异常求助</span></button></div>
           <div class="section-label"><strong>行程动态</strong><span class="secondary">仅异常与关键节点提醒</span></div>
           <div class="simple-list"><div class="simple-item"><span class="place-icon"><i data-lucide="shield-check" aria-hidden="true"></i></span><div><strong>已自动绕开施工路段</strong><span>路线增加约 2 分钟 · 2 分钟前</span></div></div><div class="simple-item"><span class="place-icon"><i data-lucide="navigation" aria-hidden="true"></i></span><div><strong>行程进展正常</strong><span>已完成约 58% · 当前位置持续更新</span></div></div></div>
@@ -1497,9 +1302,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         '已切换到路线查询。': 'assets/voice/tab-home.mp3?v=20260719-auto-fit-v3',
         '已切换到实时导航，AI 正在持续扫描前方十五米。': 'assets/voice/tab-navigation.mp3?v=20260719-auto-fit-v3',
         '已切换到消息中心。': 'assets/voice/tab-messages.mp3?v=20260719-auto-fit-v3',
-        '已切换到个人中心。': 'assets/voice/tab-profile.mp3?v=20260719-auto-fit-v3',
-        '已撤销本次绕行，返回实时导航。': 'assets/voice/cancel-reroute.mp3?v=20260719-auto-fit-v3',
-        '已确认安全绕行路线，继续导航。': 'assets/voice/confirm-reroute.mp3?v=20260719-auto-fit-v3',
+        '已切换到个人中心。': 'assets/voice/tab-profile.mp3?v=20260719-auto-fit-v3'
       };
       const userAudioPlayer = typeof window.Audio === 'undefined' ? null : new window.Audio();
       if (userAudioPlayer) userAudioPlayer.preload = 'auto';
@@ -1525,27 +1328,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         }
         if ('speechSynthesis' in window) window.speechSynthesis.cancel();
       }
-      (function warmUpSpeech() {
-        let warmed = false;
-        function unlock() {
-          if (warmed) return;
-          warmed = true;
-          try {
-            if ('speechSynthesis' in window && window.SpeechSynthesisUtterance) {
-              const u = new window.SpeechSynthesisUtterance('');
-              u.volume = 0;
-              window.speechSynthesis.speak(u);
-            }
-          } catch (e) {}
-          document.removeEventListener('touchstart', unlock);
-          document.removeEventListener('pointerdown', unlock);
-          document.removeEventListener('click', unlock);
-        }
-        document.addEventListener('touchstart', unlock, { passive: true });
-        document.addEventListener('pointerdown', unlock, { passive: true });
-        document.addEventListener('click', unlock);
-      })();
-
       function speakWithSystemVoice(message, currentToken) {
         if (!('speechSynthesis' in window) || typeof window.SpeechSynthesisUtterance === 'undefined') {
           userSpeechStatus.textContent = '当前浏览器不支持语音播报';
@@ -1569,7 +1351,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         utterance.onerror = () => {
           if (userSpeechToken === currentToken) userSpeechStatus.textContent = '语音播报已被新操作打断';
         };
-        const mobileDelay = 0; /* fixed: never defer speak() off the user-gesture stack (iOS/webview requires sync call) */
+        const mobileDelay = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ? 80 : 0;
         speechStartTimer = window.setTimeout(() => {
           if (userSpeechToken !== currentToken) return;
           window.speechSynthesis.resume();
@@ -1656,7 +1438,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         route: ['02 推荐路线与原因', '默认只给一条安全优先路线，用时间差和避障数量解释为什么值得选择。'],
         navigation: ['03 指令优先导航', '行进中让下一动作成为视觉主角，地图只承担定位和建立信任的辅助作用。'],
         alert: ['04 高风险打断与分步绕行', '危险事件同时触发语音、震动和高对比视觉，先明确要求停下，再一次播报一个绕行动作。'],
-        messages: ['消息中心', '路线与障碍治理结果集中呈现，可一键上报障碍直达城市治理端。'],
+        messages: ['消息中心', '路线和障碍治理结果集中呈现，不加入公众上报入口。'],
         profile: ['个人设置', '集中管理常用地点、导航偏好、语音震动和紧急联系人。']
       };
       const eventCopy = {
@@ -1721,256 +1503,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         root.querySelectorAll('[data-mobile-tab]').forEach((tab) => tab.classList.toggle('is-active', tab.dataset.mobileTab === tabScreen));
         userTabbar.hidden = screen === 'alert';
         if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
-        if (screen === 'navigation') { startNavCamera(); setTimeout(() => speakUser('已开始安全导航。前方八十米右转进入洪武路，请沿盲道直行。'), 700); } else stopNavCamera();
-      }
-      /* ======== 真实摄像头 + YOLO11 障碍物检测 ======== */
-      let navCameraStream=null, navDetectTimer=null, navCamActive=false, navLastSpeak=0, navAIReady=false, navHudRAF=null, navHasBlindpath=false;
-      const NAV_DETECT_URL='http://127.0.0.1:5050/api/detect';
-      async function startNavCamera(){
-      window.startNavCamera = startNavCamera;   // 暴露给内联 onclick（重试摄像头）
-        if(navCamActive) return;
-        const video=root.querySelector('#nav-cam-video');
-        const status=root.querySelector('#nav-cam-status');
-        const navStatus=root.querySelector('#nav-detect-status');
-        const navSub=root.querySelector('#nav-detect-sub');
-        const bpSub=root.querySelector('#nav-bp-sub');
-        // 视频演示模式：循环播放预录的「盲道障碍物检测」演示视频（带「演示·技术示意」角标），
-        // 不再调用真实摄像头与 YOLO11 模型，规避实时识别置信度不稳定的问题，同时守「虚实分离」规矩
-        try{
-          video.style.display='block';
-          if(!video.src || video.src.indexOf('lujian-blindpath-detect-demo')<0){
-            video.src='lujian-blindpath-detect-demo.mp4';
-          }
-          video.loop=true; video.muted=true;
-          await video.play();
-          status.style.display='none';
-          navCamActive=true;
-          startNavHud();
-          if(navStatus) navStatus.querySelector('strong').textContent='AI 障碍识别运行中（演示）';
-          if(navSub) navSub.textContent='正在播放盲道检测演示';
-          if(bpSub) bpSub.textContent='演示视频 · 技术示意';
-        }catch(e){
-          video.style.display='none';
-          status.style.display='flex';
-          status.innerHTML='<div style="font-size:22px">⚠️</div><div style="font-weight:600">演示视频加载失败</div><div style="font-size:11px;opacity:.7">'+(e.message||'')+'</div><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button onclick="startNavCamera()" style="padding:7px 14px;background:var(--primary);color:#fff;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;border:none">重试播放</button></div>';
-          if(navStatus) navStatus.querySelector('strong').textContent='演示视频未启用';
-          if(navSub) navSub.textContent='点击重试播放演示';
-          if(bpSub) bpSub.textContent='演示视频 · 技术示意';
-          navCamActive=false;
-        }
-      }
-      function stopNavCamera(){
-        stopNavHud();
-        if(navDetectTimer){clearInterval(navDetectTimer);navDetectTimer=null}
-        const video=root.querySelector('#nav-cam-video');
-        const canvas=root.querySelector('#nav-cam-canvas');
-        const status=root.querySelector('#nav-cam-status');
-        if(video){ try{ video.pause(); }catch(e){} }
-        if(canvas){canvas.style.display='none';canvas.getContext('2d').clearRect(0,0,canvas.width||1,canvas.height||1)}
-        if(status) status.style.display='none';
-        navCamActive=false;
-      }
-      async function captureAndDetectNav(){
-        if(!navCamActive) return;
-        if(!window.NavAI) return;                 // 浏览器端 AI 模块尚未加载完，跳过这一帧
-        if(!navAIReady){
-          try{ await window.NavAI.ready; navAIReady=true; }
-          catch(e){
-            navDetectFailCount=(navDetectFailCount||0)+1;
-            if(navDetectFailCount===3){
-              const ns=root.querySelector('#nav-detect-status');
-              const nsub=root.querySelector('#nav-detect-sub');
-              if(ns){const s=ns.querySelector('strong');s.textContent='AI 引擎加载失败';s.style.color='var(--text-muted)';ns.style.background=''}
-              if(nsub){nsub.textContent='请刷新页面重试 · 模型需联网首次加载'}
-            }
-            return;
-          }
-        }
-        const video=root.querySelector('#nav-cam-video');
-        if(video.readyState<2) return;
-        const vw=video.videoWidth||640, vh=video.videoHeight||480;
-        try{
-          const data=await window.NavAI.detect(video);
-          drawNavDetections(data, vw, vh);
-          updateNavStatus(data);
-          navDetectFailCount=0;
-          const st=root.querySelector('#nav-cam-status'); if(st) st.style.display='none';
-        }catch(e){
-          navDetectFailCount=(navDetectFailCount||0)+1;
-          console.warn('browser detect failed',e);
-        }
-      }
-      function drawNavDetections(data, vw, vh){
-        const canvas=root.querySelector('#nav-cam-canvas');
-        canvas.style.display='block';
-        canvas.width=vw;canvas.height=vh;
-        const ctx=canvas.getContext('2d');
-        ctx.clearRect(0,0,vw,vh);
-        const det=data.detections||[];
-        navHasBlindpath = det.some(d=>d.kind==='blindpath');
-        if(!det.length){
-          const text='未识别到盲道';
-          ctx.font='bold 18px -apple-system,sans-serif';
-          const tw=ctx.measureText(text).width;
-          const px=vw/2-tw/2-14, py=vh-48;
-          ctx.fillStyle='rgba(0,0,0,0.5)'; roundRect(ctx,px,py,tw+28,34,10); ctx.fill();
-          ctx.fillStyle='#7fe3a0'; ctx.fillText(text, px+14, py+23);
-          return;
-        }
-        const colorMap={high:'#ff5a3c',mid:'#ff9f43',low:'#4cd07d',info:'#38d6eb'};
-        for(const d of det){
-          const x=d.x*vw, y=d.y*vh, w=d.w*vw, h=d.h*vh;
-          if(d.kind==='blindpath'){
-            // 安全路径：半透明青色高亮带 + 流动虚线边（来自真实盲道模型）
-            ctx.fillStyle='rgba(56,214,235,0.16)'; ctx.fillRect(x,y,w,h);
-            ctx.strokeStyle='#38d6eb'; ctx.lineWidth=3; ctx.setLineDash([9,6]); ctx.strokeRect(x,y,w,h); ctx.setLineDash([]);
-            const label='盲道 '+Math.round(d.conf*100)+'%';
-            ctx.font='bold 15px -apple-system,sans-serif';
-            const tw=ctx.measureText(label).width+12;
-            ctx.fillStyle='#0c7c8c'; roundRect(ctx,x,Math.max(0,y-24),tw,24,6); ctx.fill();
-            ctx.fillStyle='#eafdff'; ctx.fillText(label, x+6, Math.max(17,y-7));
-          }else{
-            const c=colorMap[d.risk]||'#38d6eb';
-            ctx.save(); ctx.shadowColor=c; ctx.shadowBlur=12;
-            ctx.strokeStyle=c; ctx.lineWidth=3; roundRect(ctx,x,y,w,h,8); ctx.stroke(); ctx.restore();
-            drawNavCornerTicks(ctx,x,y,w,h,c);
-            const label=d.cls_zh+' '+Math.round(d.conf*100)+'% · '+distTier(d.dist);
-            ctx.font='bold 14px -apple-system,sans-serif';
-            const tw=ctx.measureText(label).width+14;
-            ctx.fillStyle=c; roundRect(ctx,x,Math.max(0,y-23),tw,23,6); ctx.fill();
-            ctx.fillStyle='#101418'; ctx.fillText(label, x+7, Math.max(16,y-6));
-          }
-        }
-      }
-      function updateNavStatus(data){
-        const navStatus=root.querySelector('#nav-detect-status');
-        const navSub=root.querySelector('#nav-detect-sub');
-        if(!navStatus) return;
-        const strong=navStatus.querySelector('strong');
-        const det=data.detections||[];
-        const obstacles=det.filter(d=>d.kind==='obstacle');
-        const blindpaths=det.filter(d=>d.kind==='blindpath');
-        const risky=obstacles.filter(d=>d.risk==='high'||d.risk==='mid');
-        if(risky.length){
-          const main=risky[0];
-          navStatus.style.background='color-mix(in srgb, #e25507 16%, transparent)';
-          strong.textContent='注意避让 · '+main.cls_zh;
-          strong.style.color='#e25507';
-          const riskZh={high:'高',mid:'中',low:'低'}[main.risk]||'低';
-          if(navSub) navSub.textContent='风险'+riskZh+' · 距离'+distTier(main.dist)+' · 置信度 '+Math.round(main.conf*100)+'% · 推理 '+data.inference_ms+'ms · 共 '+det.length+' 个对象';
-          const now=Date.now();
-          if(now-navLastSpeak>2500){
-            navLastSpeak=now;
-            if(typeof speak==='function') speak('注意避让，前方有'+main.cls_zh+'。');
-          }
-        }else if(blindpaths.length){
-          // 识别出盲道=安全路径
-          navStatus.style.background='color-mix(in srgb, #15c2d9 18%, transparent)';
-          strong.textContent='已识别盲道 · 可沿此前行';
-          strong.style.color='#0c7c8c';
-          if(navSub) navSub.textContent='盲道置信度 '+Math.round(blindpaths[0].conf*100)+'% · 障碍物 '+obstacles.length+' 个 · '+data.inference_ms+'ms';
-          const now=Date.now();
-          if(now-navLastSpeak>2500){
-            navLastSpeak=now;
-            if(typeof speak==='function') speak('已识别盲道，可沿此前行。');
-          }
-        }else if(obstacles.length){
-          const info=obstacles[0];
-          navStatus.style.background='var(--muted)';
-          strong.textContent='前方路面 · '+info.cls_zh;
-          strong.style.color='var(--foreground)';
-          if(navSub) navSub.textContent='低风险物体 · 距离'+distTier(info.dist)+' · 置信度 '+Math.round(info.conf*100)+'% · '+data.inference_ms+'ms';
-        }else{
-          navStatus.style.background='var(--muted)';
-          strong.textContent='未识别到盲道';
-          strong.style.color='var(--foreground)';
-          if(navSub) navSub.textContent='持续扫描中 · 最近一次识别 '+data.inference_ms+'ms';
-        }
-      }
-      function startNavHud(){
-        const hud=root.querySelector('#nav-cam-hud');
-        if(!hud) return;
-        hud.style.display='block';
-        const ctx=hud.getContext('2d');
-        function frame(t){
-          if(!navCamActive){ navHudRAF=null; return; }
-          const video=root.querySelector('#nav-cam-video');
-          const vw=video.videoWidth||640, vh=video.videoHeight||480;
-          if(hud.width!==vw||hud.height!==vh){ hud.width=vw; hud.height=vh; }
-          ctx.clearRect(0,0,vw,vh);
-          // 顶部/底部压暗，提升标签可读性（真实摄像头 HUD 常见）
-          const g=ctx.createLinearGradient(0,0,0,vh);
-          g.addColorStop(0,'rgba(0,0,0,0.40)'); g.addColorStop(0.15,'rgba(0,0,0,0)');
-          g.addColorStop(0.84,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,0.44)');
-          ctx.fillStyle=g; ctx.fillRect(0,0,vw,vh);
-          // 四角取景框
-          const m=Math.round(vw*0.045), L=Math.round(vw*0.11);
-          ctx.strokeStyle='rgba(56,214,235,0.92)'; ctx.lineWidth=4; ctx.lineCap='round';
-          const corner=(px,py,dx,dy)=>{ ctx.beginPath(); ctx.moveTo(px+dx*L,py); ctx.lineTo(px,py); ctx.lineTo(px,py+dy*L); ctx.stroke(); };
-          corner(m,m,1,1); corner(vw-m,m,-1,1); corner(m,vh-m,1,-1); corner(vw-m,vh-m,-1,-1);
-          // 扫描光带（上下往复）
-          const frac=(Math.sin(t/1100)+1)/2, sy=frac*vh;
-          const sg=ctx.createLinearGradient(0,sy-28,0,sy+28);
-          sg.addColorStop(0,'rgba(56,214,235,0)'); sg.addColorStop(0.5,'rgba(56,214,235,0.28)'); sg.addColorStop(1,'rgba(56,214,235,0)');
-          ctx.fillStyle=sg; ctx.fillRect(0,sy-28,vw,56);
-          ctx.strokeStyle='rgba(56,214,235,0.5)'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,sy); ctx.lineTo(vw,sy); ctx.stroke();
-          // 未识别盲道时，画一条中部引导虚线作为兜底
-          if(!navHasBlindpath){
-            ctx.save(); ctx.setLineDash([10,12]); ctx.strokeStyle='rgba(255,255,255,0.30)'; ctx.lineWidth=3;
-            ctx.beginPath(); ctx.moveTo(vw/2, vh*0.16); ctx.lineTo(vw/2, vh*0.92); ctx.stroke(); ctx.restore();
-          }
-          // 右上角 演示 指示（视频演示版，诚实标注）
-          const liveText='演示';
-          ctx.font='bold 15px -apple-system,sans-serif'; ctx.textBaseline='middle';
-          const tw=ctx.measureText(liveText).width;
-          const bx=vw-m-12-tw-22, by=m+12;
-          ctx.fillStyle='rgba(0,0,0,0.45)'; roundRect(ctx,bx-10,by-12,tw+34,26,8); ctx.fill();
-          ctx.fillStyle='#ff5a5a'; ctx.beginPath(); ctx.arc(bx+2,by,5,0,Math.PI*2); ctx.fill();
-          ctx.fillStyle='#fff'; ctx.fillText(liveText, bx+14, by);
-          ctx.textBaseline='alphabetic';
-          navHudRAF=requestAnimationFrame(frame);
-        }
-        if(navHudRAF) cancelAnimationFrame(navHudRAF);
-        navHudRAF=requestAnimationFrame(frame);
-      }
-      function stopNavHud(){
-        if(navHudRAF){ cancelAnimationFrame(navHudRAF); navHudRAF=null; }
-        const hud=root.querySelector('#nav-cam-hud');
-        if(hud){ hud.style.display='none'; const c=hud.getContext('2d'); c.clearRect(0,0,hud.width||1,hud.height||1); }
-      }
-      function roundRect(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
-      function drawNavCornerTicks(ctx,x,y,w,h,c){
-        const t=10; ctx.strokeStyle=c; ctx.lineWidth=3; ctx.lineCap='round';
-        ctx.beginPath(); ctx.moveTo(x,y+t); ctx.lineTo(x,y); ctx.lineTo(x+t,y); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(x+w-t,y); ctx.lineTo(x+w,y); ctx.lineTo(x+w,y+t); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(x,y+h-t); ctx.lineTo(x,y+h); ctx.lineTo(x+t,y+h); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(x+w-t,y+h); ctx.lineTo(x+w,y+h); ctx.lineTo(x+w,y+h-t); ctx.stroke();
-      }
-      function distTier(d){ return d<=4?'近':(d<=10?'中':'远'); }
-      async function detectNavUpload(input){
-      window.detectNavUpload = detectNavUpload;   // 暴露给内联 onchange（上传图片检测）
-        const file=input.files[0];if(!file) return;
-        const url=URL.createObjectURL(file);
-        const img=new Image();
-        img.onload=async ()=>{
-          try{
-            if(window.NavAI) await window.NavAI.ready;
-            const data=await window.NavAI.detect(img);
-            const canvas=root.querySelector('#nav-cam-canvas');
-            const status=root.querySelector('#nav-cam-status');
-            const video=root.querySelector('#nav-cam-video');
-            if(status) status.style.display='none';
-            if(video) video.style.display='none';
-            canvas.style.display='block';
-            canvas.width=img.width;canvas.height=img.height;
-            const ctx=canvas.getContext('2d');
-            ctx.drawImage(img,0,0);
-            drawNavDetections(data, img.width, img.height);
-            updateNavStatus(data);
-          }catch(e){ alert('检测失败：'+(e.message||e)); }
-          URL.revokeObjectURL(url);
-        };
-        img.src=url;
       }
       alertNextButton.addEventListener('click', () => {
         if ('vibrate' in navigator) navigator.vibrate(120);
@@ -2007,21 +1539,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
         mobileToast.hidden = false;
         mobileToastTimer = window.setTimeout(() => { mobileToast.hidden = true; }, 1800);
       }
-      root.querySelector('[data-report-barrier]')?.addEventListener('click', () => {
-        speakUser('障碍已上报，城市治理端已收到，处置进度将在消息中更新。');
-        showMobileToast('障碍已上报，工单已送达城市治理端');
-        const list = root.querySelector('[data-mobile-screen="messages"] .simple-list');
-        if (list) {
-          const item = document.createElement('div');
-          item.className = 'simple-item';
-          item.innerHTML = '<span class="place-icon"><i data-lucide="upload-cloud" aria-hidden="true"></i></span><div><strong>您上报的障碍已送达治理端</strong><span>事件 LJ-WO-实时 · 处置进度将在消息中更新</span></div>';
-          list.insertBefore(item, list.firstChild);
-          if (globalThis.lucide) lucide.createIcons({ attrs: { width: 16, height: 16 } });
-        }
-      });
-      root.querySelector('[data-demo-alert]')?.addEventListener('click', () => {
-        showScreen('alert');
-      });
       root.querySelector('#voice-query-button').addEventListener('click', () => {
         root.querySelector('#voice-result p').textContent = '已识别：前往德基广场一期 1 号门。已找到 3 条路线，推荐路线 B，过去 7 天盲道占用最低。';
         showMobileToast('语音查询完成，推荐路线 B');
@@ -2403,7 +1920,5 @@ html, body { width: 100%; height: 100%; overflow: hidden; overscroll-behavior: n
   window.setTimeout(scheduleFit, 350);
 })();
 </script>
-<!-- 视频演示版：不加载 nav-ai.mjs（浏览器端 YOLO11 模型），导航屏改用预录演示视频 -->
-<!-- <script type="module" src="./nav-ai.mjs"></script> -->
 </body>
 </html>
